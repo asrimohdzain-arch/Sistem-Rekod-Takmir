@@ -1,0 +1,180 @@
+html
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Rekod Takmir</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    :root { 
+      --primary: #550000; 
+      --btn-dark-blue: #1e3a8a;
+      --btn-dark-blue-hover: #1e40af;
+    }
+    body { background-color: #f3f4f6; padding: 0; margin: 0; font-family: 'Segoe UI', sans-serif; color: #1f2937; font-size: 10pt; }
+    
+    /* Custom style for compact SweetAlert2 on mobile */
+    .swal2-popup {
+      width: 270px !important;
+      padding: 0.8rem !important;
+      font-size: 0.75rem !important;
+      border-radius: 12px !important;
+    }
+    .swal2-title {
+      font-size: 1rem !important;
+      margin-bottom: 0.4rem !important;
+    }
+    .swal2-html-container {
+      font-size: 0.78rem !important;
+      margin: 0.4rem 0 !important;
+    }
+    .swal2-icon {
+      width: 35px !important;
+      height: 35px !important;
+      margin: 0.4rem auto !important;
+      font-size: 0.75rem !important;
+    }
+    .swal2-icon .swal2-icon-content {
+      font-size: 1.1rem !important;
+    }
+    .swal2-actions {
+      margin-top: 0.6rem !important;
+    }
+    .swal2-styled {
+      padding: 5px 14px !important;
+      font-size: 0.75rem !important;
+      border-radius: 6px !important;
+    }
+    .swal2-input {
+      font-size: 0.78rem !important;
+      height: 34px !important;
+      margin: 0.4rem auto !important;
+    }
+
+    .app-container {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: #f8fafc;
+      position: relative;
+      padding-bottom: 80px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+    }
+
+    /* Top App Bar */
+    .top-navbar {
+      background: white;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #e5e7eb;
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-navbar i { font-size: 1rem; margin-right: 8px; cursor: pointer; color: #374151; }
+
+    /* Hero Header */
+    .hero-header {
+      background: linear-gradient(135deg, #550000 0%, #3a0000 100%);
+      color: white;
+      padding: 18px 14px;
+      border-bottom: 3px solid #ffc107;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .hero-header::after {
+      content: "";
+      position: absolute;
+      right: -20px;
+      bottom: -30px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 50%;
+    }
+    .hero-title { font-size: 1.15rem; font-weight: 700; margin: 0; }
+
+    /* Summary Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+    .stat-card {
+      background: white;
+      padding: 8px 6px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+      border: 1px solid #e5e7eb;
+    }
+    .stat-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin: 0; }
+    .stat-card p { font-size: 0.65rem; color: #6b7280; margin: 2px 0 0 0; font-weight: 500; }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 1px 0;
+    }
+    .section-subtitle {
+      font-size: 0.68rem;
+      color: #6b7280;
+      margin: 0 0 8px 0;
+    }
+
+    /* Menu Cards */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+    .menu-card {
+      background: white;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .menu-card:hover { border-color: var(--primary); transform: translateY(-1px); }
+    .menu-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      background: #fdf2f2;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+    .menu-card h5 { font-size: 0.82rem; font-weight: 700; margin: 0 0 2px 0; color: #1f2937; }
+    .menu-card p { font-size: 0.65rem; color: #6b7280; margin: 0; }
+
+    /* Content Cards / Containers */
+    .content-box {
+      background: white;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 0 10px 10px 10px;
+      box-shadow: 0 1px 4px rgba(0,
