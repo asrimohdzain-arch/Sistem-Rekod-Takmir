@@ -11,84 +11,76 @@
   <style>
     :root { 
       --primary: #550000; 
+      --primary-hover: #3a0000;
       --btn-dark-blue: #1e3a8a;
       --btn-dark-blue-hover: #1e40af;
+      --accent-red: #990000;
+      /* Green theme variables */
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --green-text: #166534;
+      --green-subtext: #15803d;
     }
-    body { background-color: #f3f4f6; padding: 0; margin: 0; font-family: 'Segoe UI', sans-serif; color: #1f2937; font-size: 10pt; }
+    body { background-color: #f8fafc; padding: 0; margin: 0; font-family: 'Segoe UI', sans-serif; color: #1f2937; font-size: 10pt; width: 100vw; overflow-x: hidden; }
     
-    /* Custom style for compact SweetAlert2 on mobile */
     .swal2-popup {
-      width: 270px !important;
-      padding: 0.8rem !important;
-      font-size: 0.75rem !important;
-      border-radius: 12px !important;
+      width: 250px !important;
+      padding: 0.6rem !important;
+      font-size: 0.72rem !important;
+      border-radius: 10px !important;
     }
     .swal2-title {
-      font-size: 1rem !important;
-      margin-bottom: 0.4rem !important;
+      font-size: 0.95rem !important;
+      margin-bottom: 0.3rem !important;
     }
     .swal2-html-container {
-      font-size: 0.78rem !important;
-      margin: 0.4rem 0 !important;
+      font-size: 0.75rem !important;
+      margin: 0.3rem 0 !important;
     }
     .swal2-icon {
-      width: 35px !important;
-      height: 35px !important;
-      margin: 0.4rem auto !important;
-      font-size: 0.75rem !important;
+      width: 32px !important;
+      height: 32px !important;
+      margin: 0.3rem auto !important;
+      font-size: 0.7rem !important;
     }
     .swal2-icon .swal2-icon-content {
-      font-size: 1.1rem !important;
+      font-size: 1rem !important;
     }
     .swal2-actions {
-      margin-top: 0.6rem !important;
+      margin-top: 0.5rem !important;
     }
     .swal2-styled {
-      padding: 5px 14px !important;
-      font-size: 0.75rem !important;
-      border-radius: 6px !important;
+      padding: 4px 12px !important;
+      font-size: 0.72rem !important;
+      border-radius: 5px !important;
     }
     .swal2-input {
-      font-size: 0.78rem !important;
-      height: 34px !important;
-      margin: 0.4rem auto !important;
+      font-size: 0.75rem !important;
+      height: 32px !important;
+      margin: 0.3rem auto !important;
     }
 
     .app-container {
-      max-width: 480px;
-      margin: 0 auto;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0;
       min-height: 100vh;
       background: #f8fafc;
       position: relative;
       padding-bottom: 80px;
-      box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+      box-shadow: none;
     }
 
-    /* Top App Bar */
-    .top-navbar {
-      background: white;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #e5e7eb;
-      font-weight: 600;
-      font-size: 0.95rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .top-navbar i { font-size: 1rem; margin-right: 8px; cursor: pointer; color: #374151; }
-
-    /* Hero Header */
     .hero-header {
       background: linear-gradient(135deg, #550000 0%, #3a0000 100%);
       color: white;
-      padding: 18px 14px;
-      border-bottom: 3px solid #ffc107;
+      padding: 12px 14px;
+      border-bottom: 2px solid #ffc107;
       border-radius: 0;
       position: relative;
       overflow: hidden;
-      margin-bottom: 10px;
+      margin-top: 0px;
+      margin-bottom: 8px;
     }
     .hero-header::after {
       content: "";
@@ -100,127 +92,1038 @@
       background: rgba(255, 255, 255, 0.04);
       border-radius: 50%;
     }
-    .hero-title { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .hero-title { font-size: 14pt; font-weight: 700; margin: 0; line-height: 1.15; text-align: center; color: var(--primary); }
 
-    /* Summary Stats Cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      padding: 0 10px;
-      margin-bottom: 10px;
+      gap: 8px;
+      padding: 0 12px;
+      margin-bottom: 8px;
     }
     .stat-card {
-      background: white;
-      padding: 8px 6px;
-      border-radius: 10px;
+      background: var(--green-bg);
+      padding: 7px 6px;
+      border-radius: 8px;
       text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-      border: 1px solid #e5e7eb;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      border: 1px solid var(--green-border);
     }
-    .stat-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin: 0; }
-    .stat-card p { font-size: 0.65rem; color: #6b7280; margin: 2px 0 0 0; font-weight: 500; }
+    .stat-card h3 { font-size: 11pt; font-weight: 700; color: var(--green-text); margin: 0; }
+    .stat-card p { font-size: 7.5pt; color: var(--green-subtext); margin: 1px 0 0 0; font-weight: 500; }
 
-    /* Section Headings */
     .section-title {
-      font-size: 0.88rem;
+      font-size: 10pt;
       font-weight: 700;
       color: #111827;
       margin: 0 0 1px 0;
     }
     .section-subtitle {
-      font-size: 0.68rem;
+      font-size: 7.5pt;
       color: #6b7280;
-      margin: 0 0 8px 0;
+      margin: 0 0 6px 0;
     }
 
-    /* Menu Cards */
     .menu-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-      padding: 0 10px;
-      margin-bottom: 10px;
+      padding: 0 12px;
+      margin-bottom: 8px;
     }
     .menu-card {
-      background: white;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #e5e7eb;
+      background: var(--green-bg);
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--green-border);
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
-    .menu-card:hover { border-color: var(--primary); transform: translateY(-1px); }
+    .menu-card:hover { border-color: var(--green-text); transform: translateY(-1px); }
     .menu-icon {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       border-radius: 6px;
-      background: #fdf2f2;
-      color: var(--primary);
+      background: #dcfce7;
+      color: var(--green-text);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
-      margin-bottom: 6px;
+      font-size: 9.5pt;
+      margin-bottom: 4px;
     }
-    .menu-card h5 { font-size: 0.82rem; font-weight: 700; margin: 0 0 2px 0; color: #1f2937; }
-    .menu-card p { font-size: 0.65rem; color: #6b7280; margin: 0; }
+    .menu-card h5 { font-size: 9.5pt; font-weight: 700; margin: 0 0 1px 0; color: #1f2937; }
+    .menu-card p { font-size: 7.5pt; color: var(--green-subtext); margin: 0; }
 
-    /* Content Cards / Containers */
     .content-box {
-      background: white;
-      border-radius: 10px;
-      padding: 10px 12px;
-      margin: 0 10px 10px 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-      border: 1px solid #e5e7eb;
+      background: var(--green-bg);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin: 0 12px 10px 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      border: 1px solid var(--green-border);
     }
+
+    .label-custom {
+      font-weight: 600;
+      font-size: 8.5pt;
+      margin-top: 4px;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      color: #374151;
+    }
+    .label-custom i { margin-right: 4px; color: var(--primary); width: 12px; text-align: center; }
+    .radio-group { background: #f9fafb; padding: 4px 6px; border: 1px solid #e5e7eb; border-radius: 5px; }
+    .form-check { margin-bottom: 2px; }
+    .form-check:last-child { margin-bottom: 0; }
+    .form-check-label { cursor: pointer; font-size: 8.5pt; font-weight: 500; }
+
+    .btn-custom-blue {
+      background-color: var(--btn-dark-blue) !important;
+      color: white !important;
+      border: none !important;
+      font-weight: 600;
+      border-radius: 5px;
+      padding: 6px 8px;
+      font-size: 8.5pt;
+      transition: background-color 0.2s;
+    }
+    .btn-custom-blue:hover { background-color: var(--btn-dark-blue-hover) !important; }
+
+    .btn-submit-design {
+      background: var(--primary) !important;
+      color: white !important;
+      width: 100%;
+      padding: 6px;
+      border-radius: 5px;
+      font-weight: 600;
+      margin-top: 8px;
+      border: none !important;
+      font-size: 9pt;
+      transition: background-color 0.2s;
+    }
+    .btn-submit-design:hover { background: var(--primary-hover) !important; }
+    .btn-submit-design:disabled { background: #9ca3af !important; cursor: not-allowed; }
+
+    #kuliahArea {
+      background-color: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 8px;
+      margin-top: 6px;
+    }
+    #sebabArea {
+      background-color: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-radius: 6px;
+      padding: 8px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .date-input-centered {
+      text-align: center;
+      text-align-last: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .record-card {
+      border: 1px solid #e5e7eb;
+      border-left: 3px solid var(--primary);
+      border-radius: 4px;
+      padding: 4px 6px;
+      margin-bottom: 4px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 7pt;
+    }
+    .record-card h6 { font-size: 7.5pt; font-weight: 700; }
+    .record-card .badge { font-size: 5.5pt; padding: 1px 3px; }
+    .record-card small, .record-card p, .record-card div { font-size: 6.5pt; }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 4px 0;
+      border-top: 1px solid #e5e7eb;
+      z-index: 1000;
+      box-shadow: -2px 5px rgba(0,0,0,0.03);
+    }
+    .nav-item-btn {
+      background: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #9ca3af;
+      font-size: 7.5pt;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 2px 8px;
+      transition: color 0.2s;
+    }
+    .nav-item-btn i { font-size: 10pt; margin-bottom: 1px; }
+    .nav-item-btn.active { color: var(--primary); }
+
+    .copyright {
+      text-align: center;
+      margin: 8px 0;
+      font-size: 7.5pt;
+      color: #9ca3af;
+    }
+    .view-section { display: none; }
+    .view-section.active { display: block; }
   </style>
 </head>
 <body>
-  <div class="app-container">
-    <!-- Top Navbar -->
-    <div class="top-navbar">
-      <i class="fa-solid fa-bars"></i>
-      <span>Sistem Rekod Takmir</span>
-    </div>
+<div class="app-container">
+  <!-- Top Back Header -->
+  <div id="topBackHeader" class="bg-white px-3 py-2 border-bottom align-items-center" style="font-size: 10.5pt; font-weight: 600; color: #1f2937; display: none;">
+    <button type="button" class="btn btn-sm btn-light p-1.5 me-2 border-0 shadow-none" onclick="handleTopBack()" style="font-size: 10.5pt;">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <span id="topHeaderTitle">Sistem Rekod Takmir</span>
+  </div>
 
+  <!-- VIEW 1: UTAMA / DASHBOARD -->
+  <div id="view-utama" class="view-section active">
     <!-- Hero Header -->
     <div class="hero-header">
-      <h1 class="hero-title">Dashboard Takmir</h1>
-      <p style="font-size: 0.75rem; margin: 4px 0 0 0; opacity: 0.9;">Pengurusan dan Rekod Aktiviti Takmir</p>
+      <div class="d-flex flex-column align-items-center justify-content-center text-center w-100 position-relative">
+        <div class="d-flex justify-content-between align-items-center w-100 mb-1.5">
+          <div class="bg-white text-dark px-2 py-0.5 rounded shadow-sm fw-bold" id="currentHeaderDate" style="font-size: 7.5pt; color: var(--primary) !important;">
+            08/10/2026
+          </div>
+          <button type="button" class="btn btn-sm btn-light text-danger py-0.5 px-2 fw-bold shadow-sm" id="logoutBtn" style="font-size: 7.5pt; position: relative; z-index: 10;">
+            <i class="fas fa-sign-out-alt me-1"></i> Log Keluar
+          </button>
+        </div>
+        <div class="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center shadow-sm mb-1" style="width: 44px; height: 44px; min-width: 44px;">
+          <i class="fas fa-mosque" style="color: var(--primary); font-size: 17pt;"></i>
+        </div>
+        <div>
+          <h4 class="hero-title" style="font-size: 14.5pt; white-space: nowrap; color: #550000 !important;">Sistem Rekod Takmir</h4>
+        </div>
+      </div>
     </div>
 
-    <!-- Main Content Area -->
-    <div class="content-box">
-      <h2 class="section-title">Selamat Datang</h2>
-      <p class="section-subtitle">Sistem sedia beroperasi dengan pangkalan data Firebase.</p>
+    <!-- Summary Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3 id="statJumlah">0</h3>
+        <p>Jumlah Kuliah</p>
+      </div>
+      <div class="stat-card">
+        <h3 id="statBulanIni">0</h3>
+        <p>Bulan Ini</p>
+      </div>
+      <div class="stat-card">
+        <h3 id="statMingguIni">0</h3>
+        <p>Minggu Ini</p>
+      </div>
+    </div>
+
+    <!-- Purata Kehadiran Jemaah -->
+    <div class="content-box py-2 mb-2" style="background: var(--green-bg); border-left: 3px solid var(--green-text); border: 1px solid var(--green-border);">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <span style="font-size: 7.5pt; color: var(--green-subtext); font-weight: 600; text-transform: uppercase;">Purata Kehadiran Jemaah</span>
+          <h5 class="m-0 fw-bold" style="font-size: 11.5pt; color: var(--green-text);" id="statPurataJemaah">0 Jemaah / Kuliah</h5>
+        </div>
+        <div class="bg-white p-2 rounded-circle shadow-sm" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--green-text);">
+          <i class="fas fa-users" style="font-size: 9pt;"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Utama -->
+    <div style="padding: 0 12px;">
+      <h5 class="section-title">Menu Utama</h5>
+      <p class="section-subtitle">Pilih tindakan yang diperlukan</p>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-card" onclick="switchTab('borang')">
+        <div class="menu-icon"><i class="fas fa-edit"></i></div>
+        <h5>Borang Rekod</h5>
+        <p>Tambah rekod baharu</p>
+      </div>
+      <div class="menu-card" onclick="switchTab('senarai')">
+        <div class="menu-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fas fa-list-ul"></i></div>
+        <h5>Senarai Rekod</h5>
+        <p>Lihat semua rekod</p>
+      </div>
+    </div>
+
+    <!-- Quick Management box -->
+    <div class="content-box" style="background-color: #fff1f2; border-color: #fecdd3;">
+      <div>
+        <h5 class="section-title m-0" style="color: #9f1239;">Pengurusan Cepat</h5>
+        <p class="section-subtitle m-0" style="color: #be123c;">Padam mengikut tarikh atau tetapan</p>
+      </div>
+      <hr class="text-danger my-1.5 opacity-25">
+      <div class="row g-1.5 align-items-center mt-1">
+        <div class="col-7">
+          <input type="date" id="tarikhHapus" class="form-control form-control-sm date-input-centered bg-white" style="font-size: 8.5pt;">
+        </div>
+        <div class="col-5">
+          <button class="btn btn-sm btn-outline-danger w-100 fw-bold py-1 bg-white" style="font-size: 8.5pt;" onclick="padamMengikutTarikh()"><i class="fas fa-calendar-times me-1"></i> Ikut Tarikh</button>
+        </div>
+      </div>
+      <div class="mt-3 d-flex flex-column gap-2">
+        <button class="btn btn-sm btn-custom-blue w-100 fw-bold py-1 m-0" style="font-size: 8.5pt;" onclick="eksportRingkasan()"><i class="fas fa-file-excel me-1"></i> Eksport / Salin Ringkasan Data</button>
+        <button class="btn btn-sm btn-danger w-100 fw-bold py-1 m-0 mt-2" style="font-size: 8.5pt;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Semua Rekod</button>
+      </div>
     </div>
   </div>
 
-  <!-- Firebase SDK & Configuration via CDN -->
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+  <!-- VIEW 2: BORANG REKOD -->
+  <div id="view-borang" class="view-section">
+    <div class="content-box mt-2">
+      <div class="d-flex align-items-center mb-1.5">
+        <div class="bg-danger text-white rounded p-1.5 me-2" style="background: var(--primary) !important; font-size: 9pt;">
+          <i class="fas fa-file-signature"></i>
+        </div>
+        <h5 class="section-title m-0" id="borangHeaderTitle">Borang Rekod Takmir</h5>
+      </div>
+      <form id="rekodForm">
+        <input type="hidden" id="editDocId" value="">
+        <input type="hidden" id="editCollectionName" value="">
 
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyAwRIQis4oLeYRP_OAJDUBXOD32pwvMGfs",
-      authDomain: "sistem-rekod-takmir.firebaseapp.com",
-      projectId: "sistem-rekod-takmir",
-      storageBucket: "sistem-rekod-takmir.firebasestorage.app",
-      messagingSenderId: "923971919876",
-      appId: "1:923971919876:web:2739dade491afd88f2d551"
+        <label class="label-custom" for="tarikh"><i class="fas fa-calendar-alt"></i> Tarikh</label>
+        <input type="date" name="tarikh" id="tarikh" class="form-control form-control-sm date-input-centered" style="font-size: 8.5pt;" required>
+        
+        <label class="label-custom"><i class="fas fa-mosque"></i> Pilih Masjid / Madrasah</label>
+        <div class="radio-group">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="masjid" value="Madrasah Lubok Kawah Hilir" id="mj1" required>
+            <label class="form-check-label" for="mj1">Madrasah Lubok Kawah Hilir</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="masjid" value="Masjid Pondok" id="mj2">
+            <label class="form-check-label" for="mj2">Masjid Pondok</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="masjid" value="Masjid Hj Yaakob" id="mj3">
+            <label class="form-check-label" for="mj3">Masjid Hj Yaakob</label>
+          </div>
+        </div>
+
+        <label class="label-custom"><i class="fas fa-chalkboard-teacher"></i> Status Kuliah</label>
+        <div class="radio-group">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="status" value="Kuliah" id="st1" onclick="tunjukkanBahagian()">
+            <label class="form-check-label" for="st1">Kuliah</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="status" value="Tidak Kuliah" id="st2" onclick="tunjukkanBahagian()">
+            <label class="form-check-label" for="st2">Tidak Kuliah (Borang Tunjuk Sebab)</label>
+          </div>
+        </div>
+
+        <div id="kuliahArea">
+          <label class="label-custom" for="bilJemaah"><i class="fas fa-users"></i> Bilangan Jemaah</label>
+          <input type="number" name="bilJemaah" id="bilJemaah" class="form-control form-control-sm bg-white" style="font-size: 8.5pt;" placeholder="Masukkan jumlah">
+          
+          <label class="label-custom" for="catatan"><i class="fas fa-comment-dots"></i> Catatan / Aktiviti</label>
+          <textarea name="catatan" id="catatan" class="form-control form-control-sm bg-white" style="font-size: 8.5pt;" rows="2" placeholder="Sila catat maklumat kuliah..."></textarea>
+        </div>
+
+        <div id="sebabArea">
+          <label class="label-custom" for="sebab"><i class="fas fa-exclamation-triangle"></i> Sebab Tidak Hadir / Kuliah Batal</label>
+          <textarea name="sebab" id="sebab" class="form-control form-control-sm bg-white" style="font-size: 8.5pt;" rows="2" placeholder="Sila nyatakan sebab..."></textarea>
+        </div>
+
+        <div class="d-flex gap-2 mt-2">
+          <button type="button" class="btn-submit-design m-0" id="submitBtn" onclick="hantarBorang()">
+            <i class="fas fa-save me-1"></i> SIMPAN REKOD
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary fw-bold mt-2 py-1 px-3" id="batalEditBtn" style="display: none; font-size: 9pt;" onclick="batalModKemaskini()">
+            Batal
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- VIEW 3: SENARAI & PENGURUSAN -->
+  <div id="view-senarai" class="view-section">
+    <div class="content-box mt-2" style="background-color: #fefce8; border-color: #fde047;">
+      <div class="d-flex justify-content-between align-items-center mb-1.5">
+        <div>
+          <h5 class="section-title m-0">Senarai Kuliah</h5>
+          <p class="section-subtitle m-0" id="jumlahRekodLabel">Memuatkan senarai...</p>
+        </div>
+        <button class="btn btn-sm btn-custom-blue py-1 px-2" style="font-size: 8.5pt;" onclick="muatSenaraiRekod()"><i class="fas fa-sync-alt"></i> Segar</button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="input-group input-group-sm mb-2">
+        <span class="input-group-text bg-white"><i class="fas fa-search text-muted" style="font-size: 8.5pt;"></i></span>
+        <input type="text" id="searchInput" class="form-control border-start-0" style="font-size: 8.5pt;" placeholder="Cari hari, tarikh, masjid..." oninput="tapisSenarai()">
+      </div>
+
+      <div id="senaraiContainer">
+        <div class="text-center text-muted py-3">
+          <i class="fas fa-spinner fa-spin fa-2x"></i>
+          <p class="mt-1 small">Memuatkan senarai...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 4: TETAPAN / PENGURUSAN LANJUTAN -->
+  <div id="view-tetapan" class="view-section">
+    <div class="content-box mt-2">
+      <h5 class="section-title mb-1"><i class="fas fa-tools me-1 text-danger"></i> Pengurusan & Hapus Rekod</h5>
+      <p class="section-subtitle">Urus pemadaman data pangkalan data</p>
+
+      <div class="mb-2">
+        <label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;">Pilih Tarikh untuk Padam</label>
+        <div class="input-group input-group-sm">
+          <input type="date" id="tarikhHapus2" class="form-control date-input-centered" style="font-size: 8.5pt;">
+          <button class="btn btn-outline-danger fw-bold py-1 px-2" style="font-size: 8.5pt;" onclick="padamMengikutTarikhCustom('tarikhHapus2')"><i class="fas fa-calendar-times me-1"></i> Padam Tarikh</button>
+        </div>
+      </div>
+
+      <div class="d-grid mt-3">
+        <button class="btn btn-danger fw-bold py-1" style="font-size: 8.5pt;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="copyright">
+    Copyright &copy; 2026 | Asri Mohd Zain
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <div class="bottom-nav">
+    <button class="nav-item-btn active" id="nav-btn-utama" onclick="switchTab('utama')">
+      <i class="fas fa-home"></i>
+      Utama
+    </button>
+    <button class="nav-item-btn" id="nav-btn-borang" onclick="switchTab('borang')">
+      <i class="fas fa-edit"></i>
+      Borang
+    </button>
+    <button class="nav-item-btn" id="nav-btn-senarai" onclick="switchTab('senarai')">
+      <i class="fas fa-list-ul"></i>
+      Senarai
+    </button>
+    <button class="nav-item-btn" id="nav-btn-tetapan" onclick="switchTab('tetapan')">
+      <i class="fas fa-cog"></i>
+      Tetapan
+    </button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+  import { getFirestore, collection, addDoc, updateDoc, getDocs, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+  const appId = typeof __app_id !== 'undefined' ? __app_id : 'takmir-default-app';
+  
+  const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+    apiKey: "demo-key",
+    authDomain: "demo-domain.firebaseapp.com",
+    projectId: "demo-project"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  let currentUser = null;
+  let allCachedRecords = [];
+  let currentActiveTab = 'utama';
+
+  async function initAuth() {
+    try {
+      if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+        const cred = await signInWithCustomToken(auth, __initial_auth_token);
+        currentUser = cred.user;
+      } else {
+        const cred = await signInAnonymously(auth);
+        currentUser = cred.user;
+      }
+    } catch (e) {
+      console.error("Auth error:", e);
+    }
+  }
+
+  window.onload = async function() {
+    await initAuth();
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById('tarikh').value = today;
+    document.getElementById('tarikhHapus').value = today;
+    document.getElementById('tarikhHapus2').value = today;
+
+    const partsToday = today.split('-');
+    if(partsToday.length === 3) {
+      document.getElementById('currentHeaderDate').innerText = `${partsToday[2]}/${partsToday[1]}/${partsToday[0]}`;
+    }
+
+    history.replaceState({ tab: 'utama' }, '', '');
+    
+    window.addEventListener('popstate', function(event) {
+      if (currentActiveTab !== 'utama') {
+        switchTab('utama', false);
+      } else {
+        Swal.fire({
+          title: 'Keluar Aplikasi?',
+          text: 'Adakah anda pasti mahu keluar dari aplikasi?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#550000',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Ya',
+          cancelButtonText: 'Tidak'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.close();
+          } else {
+            history.pushState({ tab: 'utama' }, '', '');
+          }
+        });
+      }
+    });
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.onclick = function() {
+        Swal.fire({
+          title: 'Log Keluar?',
+          text: 'Adakah anda pasti mahu log keluar daripada sistem?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#550000',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Ya',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: 'Berjaya Log Keluar',
+              text: 'Anda telah log keluar.',
+              icon: 'success',
+              timer: 1500,
+              showConfirmButton: false
+            }).then(() => {
+              window.location.reload();
+            });
+          }
+        });
+      };
+    }
+
+    await muatSenaraiRekod();
+  };
+
+  window.handleTopBack = function() {
+    if (currentActiveTab !== 'utama') {
+      switchTab('utama');
+    }
+  };
+
+  window.switchTab = function(tabName, pushState = true) {
+    const previousTab = currentActiveTab;
+    currentActiveTab = tabName;
+    
+    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
+
+    document.getElementById('view-' + tabName).classList.add('active');
+    const navBtn = document.getElementById('nav-btn-' + tabName);
+    if(navBtn) navBtn.classList.add('active');
+
+    const topBackHeader = document.getElementById('topBackHeader');
+    if (tabName === 'utama') {
+      topBackHeader.style.setProperty('display', 'none', 'important');
+    } else {
+      topBackHeader.style.setProperty('display', 'flex', 'important');
+      let titleText = 'Sistem Rekod Takmir';
+      if (tabName === 'borang') {
+        titleText = document.getElementById('editDocId').value ? 'Kemaskini Rekod Takmir' : 'Borang Rekod Takmir';
+      }
+      else if (tabName === 'senarai') titleText = 'Senarai Kuliah';
+      else if (tabName === 'tetapan') titleText = 'Tetapan & Pengurusan';
+      document.getElementById('topHeaderTitle').innerText = titleText;
+    }
+
+    window.scrollTo(0,0);
+
+    if (pushState) {
+      if (tabName !== 'utama' && previousTab === 'utama') {
+        history.pushState({ tab: tabName }, '', '');
+      } else if (tabName === 'utama' && previousTab !== 'utama') {
+        history.pushState({ tab: 'utama' }, '', '');
+      }
+    }
+  };
+
+  window.tunjukkanBahagian = function() {
+    var statusEl = document.querySelector('input[name="status"]:checked');
+    if(!statusEl) return;
+    var status = statusEl.value;
+    document.getElementById('kuliahArea').style.display = (status === 'Kuliah') ? 'block' : 'none';
+    document.getElementById('sebabArea').style.display = (status === 'Tidak Kuliah') ? 'block' : 'none';
+  };
+
+  window.padamBorang = function() {
+    document.getElementById('rekodForm').reset();
+    document.getElementById('editDocId').value = '';
+    document.getElementById('editCollectionName').value = '';
+    document.getElementById('batalEditBtn').style.display = 'none';
+    document.getElementById('borangHeaderTitle').innerText = 'Borang Rekod Takmir';
+    document.getElementById('submitBtn').innerHTML = '<i class="fas fa-save me-1"></i> SIMPAN REKOD';
+    document.getElementById('kuliahArea').style.display = 'none';
+    document.getElementById('sebabArea').style.display = 'none';
+   
+    var dateField = document.getElementById('tarikh');
+    var today = new Date().toISOString().split('T')[0];
+    dateField.value = today;
+  };
+
+  window.batalModKemaskini = function() {
+    padamBorang();
+    switchTab('senarai');
+  };
+
+  function dapatkanNamaHari(tarikhStr) {
+    if (!tarikhStr) return '';
+    const parts = tarikhStr.split('-');
+    if (parts.length !== 3) return '';
+    const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+    const hariList = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
+    return hariList[dateObj.getDay()] || '';
+  }
+
+  window.hantarBorang = async function() {
+    var form = document.getElementById('rekodForm');
+    var btn = document.getElementById('submitBtn');
+    var editId = document.getElementById('editDocId').value;
+    var editCol = document.getElementById('editCollectionName').value;
+   
+    if(!form.tarikh.value || !form.masjid.value || !form.status.value) {
+      Swal.fire('RALAT!', 'Sila lengkapkan maklumat utama (Tarikh, Masjid, dan Status) sebelum simpan.', 'warning');
+      return;
+    }
+
+    const inputTarikh = form.tarikh.value;
+
+    if (!editId) {
+      const tarikhBertindih = allCachedRecords.some(item => item.tarikh === inputTarikh);
+      if (tarikhBertindih) {
+        const namaHariIni = dapatkanNamaHari(inputTarikh);
+        Swal.fire({
+          title: 'TARIKH BERTINDIH!',
+          text: `Rekod untuk tarikh ${namaHariIni} (${inputTarikh.split('-').reverse().join('/')}) telah wujud dalam sistem. Sila pilih tarikh lain.`,
+          icon: 'error',
+          confirmButtonColor: '#550000'
+        });
+        return;
+      }
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sedang Menyimpan...';
+
+    var statusValue = form.status.value;
+    var formData = {
+      tarikh: inputTarikh,
+      masjid: form.masjid.value,
+      status: statusValue,
+      userId: currentUser ? currentUser.uid : 'anon'
     };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-  </script>
+    if (statusValue === "Kuliah") {
+      formData.bilJemaah = form.bilJemaah.value ? Number(form.bilJemaah.value) : 0;
+      formData.catatan = form.catatan.value || "";
+    } else if (statusValue === "Tidak Kuliah") {
+      formData.sebab = form.sebab.value || "";
+    }
+
+    try {
+      var targetCollectionName = (statusValue === "Kuliah") ? "RekodKuliah" : "RekodTidakKuliah";
+      const targetColPath = collection(db, 'artifacts', appId, 'public', 'data', targetCollectionName);
+
+      if (editId) {
+        if (editCol !== targetCollectionName) {
+          await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', editCol, editId));
+          formData.createdAt = serverTimestamp();
+          formData.bil = allCachedRecords.length + 1;
+          await addDoc(targetColPath, formData);
+        } else {
+          await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', editCol, editId), formData);
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save me-1"></i> SIMPAN REKOD';
+
+        Swal.fire({
+          title: 'BERJAYA!',
+          text: 'Rekod Kuliah Berjaya Dikemaskini',
+          icon: 'success',
+          confirmButtonColor: '#550000'
+        });
+      } else {
+        formData.createdAt = serverTimestamp();
+        const querySnapshot = await getDocs(targetColPath);
+        formData.bil = querySnapshot.size + 1;
+
+        await addDoc(targetColPath, formData);
+
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save me-1"></i> SIMPAN REKOD';
+
+        Swal.fire({
+          title: 'BERJAYA!',
+          text: 'Alhamdulillah, Rekod Kuliah Berjaya Disimpan',
+          icon: 'success',
+          confirmButtonColor: '#550000'
+        });
+      }
+
+      padamBorang();
+      await muatSenaraiRekod();
+      switchTab('senarai');
+
+    } catch (error) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-save me-1"></i> SIMPAN REKOD';
+      Swal.fire('RALAT SISTEM!', 'Ralat sistem tidak dijangka: ' + error.message, 'error');
+    }
+  };
+
+  window.muatSenaraiRekod = async function() {
+    const container = document.getElementById('senaraiContainer');
+    container.innerHTML = '<div class="text-center text-muted py-3"><i class="fas fa-spinner fa-spin fa-2x"></i><p class="mt-1 small">Memuatkan senarai...</p></div>';
+
+    try {
+      const colPathKuliah = collection(db, 'artifacts', appId, 'public', 'data', 'RekodKuliah');
+      const colPathTidak = collection(db, 'artifacts', appId, 'public', 'data', 'RekodTidakKuliah');
+
+      const [snapKuliah, snapTidak] = await Promise.all([getDocs(colPathKuliah), getDocs(colPathTidak)]);
+      
+      let allRecords = [];
+      snapKuliah.forEach(d => { allRecords.push({ id: d.id, collectionName: 'RekodKuliah', ...d.data() }); });
+      snapTidak.forEach(d => { allRecords.push({ id: d.id, collectionName: 'RekodTidakKuliah', ...d.data() }); });
+
+      allRecords.sort((a, b) => new Date(b.tarikh || 0) - new Date(a.tarikh || 0));
+      allCachedRecords = allRecords;
+
+      document.getElementById('statJumlah').innerText = allRecords.length;
+      
+      let now = new Date();
+      let currentMonth = now.toISOString().slice(0, 7);
+      let countMonth = 0;
+      let countWeek = 0;
+      let totalJemaah = 0;
+      let countKuliahWithJemaah = 0;
+
+      let oneWeekAgo = new Date();
+      oneWeekAgo.setDate(now.getDate() - 7);
+
+      allRecords.forEach(item => {
+        if(item.tarikh && item.tarikh.startsWith(currentMonth)) countMonth++;
+        if(item.tarikh && new Date(item.tarikh) >= oneWeekAgo) countWeek++;
+        if(item.status === 'Kuliah') {
+          totalJemaah += Number(item.bilJemaah || 0);
+          countKuliahWithJemaah++;
+        }
+      });
+
+      document.getElementById('statBulanIni').innerText = countMonth;
+      document.getElementById('statMingguIni').innerText = countWeek;
+      
+      let purata = countKuliahWithJemaah > 0 ? Math.round(totalJemaah / countKuliahWithJemaah) : 0;
+      document.getElementById('statPurataJemaah').innerText = `${purata} Jemaah / Kuliah`;
+
+      document.getElementById('jumlahRekodLabel').innerText = `${allRecords.length} rekod keseluruhan`;
+
+      paparkanSenarai(allCachedRecords);
+    } catch (err) {
+      console.error(err);
+      container.innerHTML = '<div class="alert alert-danger py-2 small">Gagal memuatkan rekod. Sila semak sambungan.</div>';
+    }
+  };
+
+  window.paparkanSenarai = function(records) {
+    const container = document.getElementById('senaraiContainer');
+    if (records.length === 0) {
+      container.innerHTML = '<div class="text-center text-muted py-3"><i class="fas fa-folder-open fa-2x mb-1 text-secondary"></i><p class="small">Tiada rekod tersimpan lagi.</p></div>';
+      return;
+    }
+
+    let html = '';
+    records.forEach((item, index) => {
+      let badgeClass = item.status === 'Kuliah' ? 'bg-danger text-white' : 'bg-rose-200 text-rose-900 fw-bold border border-rose-300';
+      
+      let cardBgColor = '#fdf2f2';
+      let borderColor = '#fecdd3';
+      let leftBorderColor = '#550000';
+
+      let formattedDate = '';
+      if (item.tarikh) {
+        let parts = item.tarikh.split('-');
+        if (parts.length === 3) formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+      }
+
+      let namaHari = dapatkanNamaHari(item.tarikh);
+      let displayTarikhText = namaHari ? `${namaHari} | ${formattedDate}` : formattedDate;
+      let safeItemStr = encodeURIComponent(JSON.stringify(item));
+
+      html += `
+        <div class="record-card" style="background-color: ${cardBgColor}; border-color: ${borderColor}; border-left: 3px solid ${leftBorderColor};">
+          <div class="d-flex justify-content-between align-items-center mb-0.5">
+            <span class="badge ${badgeClass}">${item.status}</span>
+            <div class="d-flex align-items-center gap-1">
+              <small class="text-dark me-1 fw-bold" style="font-size: 6.5pt;"><i class="fas fa-calendar-alt text-muted"></i> ${displayTarikhText}</small>
+              <div class="d-flex flex-column align-items-center">
+                <button class="btn btn-sm text-danger p-0 border-0 mb-1" onclick="padamRekodSatu('${item.collectionName}', '${item.id}')" title="Padam Rekod Ini"><i class="fas fa-trash" style="font-size: 6.5pt;"></i></button>
+                <button class="btn btn-sm text-primary p-0 border-0" onclick="sediaKemaskini('${safeItemStr}')" title="Kemaskini Rekod Ini"><i class="fas fa-pen" style="font-size: 6.5pt;"></i></button>
+              </div>
+            </div>
+          </div>
+          <h6 class="fw-bold mb-0.5" style="color: var(--primary);"><i class="fas fa-mosque me-1"></i> ${item.masjid || '-'}</h6>
+          ${item.status === 'Kuliah' ? `
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-secondary"><i class="fas fa-users me-1"></i> Jemaah: <strong>${item.bilJemaah || 0}</strong></span>
+            </div>
+            ${item.catatan ? `<div class="mt-0.5 text-dark fst-italic" style="font-size: 6pt;">"${item.catatan}"</div>` : ''}
+          ` : `
+            <div class="text-danger"><i class="fas fa-exclamation-triangle me-1"></i> Sebab: ${item.sebab || '-'}</div>
+          `}
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+  };
+
+  window.sediaKemaskini = function(encodedItem) {
+    const item = JSON.parse(decodeURIComponent(encodedItem));
+    
+    document.getElementById('editDocId').value = item.id;
+    document.getElementById('editCollectionName').value = item.collectionName;
+    document.getElementById('borangHeaderTitle').innerText = 'Kemaskini Rekod Takmir';
+    document.getElementById('submitBtn').innerHTML = '<i class="fas fa-sync-alt me-1"></i> KEMASKINI REKOD';
+    document.getElementById('batalEditBtn').style.display = 'inline-block';
+
+    if (item.tarikh) document.getElementById('tarikh').value = item.tarikh;
+
+    const masjidRadios = document.querySelectorAll('input[name="masjid"]');
+    masjidRadios.forEach(r => {
+      r.checked = (r.value === item.masjid);
+    });
+
+    const statusRadios = document.querySelectorAll('input[name="status"]');
+    statusRadios.forEach(r => {
+      r.checked = (r.value === item.status);
+    });
+
+    tunjukkanBahagian();
+
+    if (item.status === 'Kuliah') {
+      document.getElementById('bilJemaah').value = item.bilJemaah || '';
+      document.getElementById('catatan').value = item.catatan || '';
+    } else {
+      document.getElementById('sebab').value = item.sebab || '';
+    }
+
+    switchTab('borang');
+  };
+
+  window.tapisSenarai = function() {
+    const keyword = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = allCachedRecords.filter(item => {
+      let namaHari = dapatkanNamaHari(item.tarikh).toLowerCase();
+      let formattedDate = '';
+      if (item.tarikh) {
+        let parts = item.tarikh.split('-');
+        if (parts.length === 3) formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+      }
+      return (item.masjid && item.masjid.toLowerCase().includes(keyword)) ||
+             (item.tarikh && item.tarikh.includes(keyword)) ||
+             (formattedDate.includes(keyword)) ||
+             (namaHari.includes(keyword)) ||
+             (item.catatan && item.catatan.toLowerCase().includes(keyword)) ||
+             (item.sebab && item.sebab.toLowerCase().includes(keyword));
+    });
+    paparkanSenarai(filtered);
+  };
+
+  window.eksportRingkasan = function() {
+    if (allCachedRecords.length === 0) {
+      Swal.fire('Perhatian', 'Tiada rekod untuk dieksport.', 'info');
+      return;
+    }
+    let textSummary = "RINGKASAN REKOD KULIAH TAKMIR\n============================\n";
+    allCachedRecords.forEach((r, index) => {
+      let tFormat = r.tarikh ? r.tarikh.split('-').reverse().join('/') : '-';
+      textSummary += `${index + 1}. Tarikh: ${tFormat} (${dapatkanNamaHari(r.tarikh)})\n   Masjid: ${r.masjid}\n   Status: ${r.status}\n`;
+      if(r.status === 'Kuliah') {
+        textSummary += `   Jemaah: ${r.bilJemaah || 0} | Catatan: ${r.catatan || '-'}\n`;
+      } else {
+        textSummary += `   Sebab: ${r.sebab || '-'}\n`;
+      }
+      textSummary += "----------------------------\n";
+    });
+
+    const textarea = document.createElement('textarea');
+    textarea.value = textSummary;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      Swal.fire({
+        title: 'Berjaya Disalin!',
+        text: 'Ringkasan laporan telah disalin ke papan keratan (clipboard). Anda boleh paste ke WhatsApp atau nota.',
+        icon: 'success',
+        confirmButtonColor: '#550000'
+      });
+    } catch (err) {
+      Swal.fire('Ralat', 'Gagal menyalin ringkasan.', 'error');
+    }
+    document.body.removeChild(textarea);
+  };
+
+  window.padamRekodSatu = async function(colName, docId) {
+    const confirm = await Swal.fire({
+      title: 'Padam Rekod?',
+      text: 'Adakah anda pasti mahu memadam rekod ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1e3a8a',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Ya, Padam',
+      cancelButtonText: 'Batal'
+    });
+
+    if (confirm.isConfirmed) {
+      try {
+        await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', colName, docId));
+        Swal.fire('Berjaya', 'Rekod telah dipadam.', 'success');
+        await muatSenaraiRekod();
+      } catch (e) {
+        Swal.fire('Ralat', 'Gagal memadam rekod: ' + e.message, 'error');
+      }
+    }
+  };
+
+  window.padamMengikutTarikh = async function() {
+    const targetDate = document.getElementById('tarikhHapus').value;
+    if (!targetDate) {
+      Swal.fire('Perhatian', 'Sila pilih tarikh terlebih dahulu.', 'warning');
+      return;
+    }
+    eksekusiPadamTarikh(targetDate);
+  };
+
+  window.padamMengikutTarikhCustom = async function(inputId) {
+    const targetDate = document.getElementById(inputId).value;
+    if (!targetDate) {
+      Swal.fire('Perhatian', 'Sila pilih tarikh terlebih dahulu.', 'warning');
+      return;
+    }
+    eksekusiPadamTarikh(targetDate);
+  };
+
+  async function eksekusiPadamTarikh(targetDate) {
+    const namaHariTarget = dapatkanNamaHari(targetDate);
+    const confirm = await Swal.fire({
+      title: `Padam Tarikh ${namaHariTarget} (${targetDate})?`,
+      text: `Semua rekod pada tarikh ini akan dipadamkan.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1e3a8a',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Ya, Teruskan',
+      cancelButtonText: 'Batal'
+    });
+
+    if (confirm.isConfirmed) {
+      try {
+        const colPathKuliah = collection(db, 'artifacts', appId, 'public', 'data', 'RekodKuliah');
+        const colPathTidak = collection(db, 'artifacts', appId, 'public', 'data', 'RekodTidakKuliah');
+
+        const [snapKuliah, snapTidak] = await Promise.all([getDocs(colPathKuliah), getDocs(colPathTidak)]);
+        
+        let batchDeletes = [];
+        snapKuliah.forEach(d => {
+          if (d.data().tarikh === targetDate) {
+            batchDeletes.push(deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'RekodKuliah', d.id)));
+          }
+        });
+        snapTidak.forEach(d => {
+          if (d.data().tarikh === targetDate) {
+            batchDeletes.push(deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'RekodTidakKuliah', d.id)));
+          }
+        });
+
+        await Promise.all(batchDeletes);
+        Swal.fire('Berjaya', `Semua rekod pada tarikh tersebut telah dipadam.`, 'success');
+        await muatSenaraiRekod();
+      } catch (e) {
+        Swal.fire('Ralat', 'Gagal memadam rekod: ' + e.message, 'error');
+      }
+    }
+  }
+
+  window.padamSemuaRekod = async function() {
+    const { value: text } = await Swal.fire({
+      title: 'AMARAN: PADAM SEMUA?',
+      text: 'Tindakan ini akan memadamkan KESELURUHAN rekod kuliah! Sila taip "Padam" di bawah untuk mengesahkan:',
+      input: 'text',
+      inputPlaceholder: 'Taip Padam di sini...',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Ya, Padam Semua',
+      cancelButtonText: 'Batal',
+      inputValidator: (value) => {
+        if (!value || value.trim().toLowerCase() !== 'padam') {
+          return 'Sila taip perkataan "Padam" dengan betul untuk meneruskan!';
+        }
+      }
+    });
+
+    if (text && text.trim().toLowerCase() === 'padam') {
+      try {
+        const colPathKuliah = collection(db, 'artifacts', appId, 'public', 'data', 'RekodKuliah');
+        const colPathTidak = collection(db, 'artifacts', appId, 'public', 'data', 'RekodTidakKuliah');
+
+        const [snapKuliah, snapTidak] = await Promise.all([getDocs(colPathKuliah), getDocs(colPathTidak)]);
+        
+        let batchDeletes = [];
+        snapKuliah.forEach(d => {
+          batchDeletes.push(deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'RekodKuliah', d.id)));
+        });
+        snapTidak.forEach(d => {
+          batchDeletes.push(deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'RekodTidakKuliah', d.id)));
+        });
+
+        await Promise.all(batchDeletes);
+        Swal.fire('Berjaya', 'Semua rekod telah berjaya dikosongkan.', 'success');
+        await muatSenaraiRekod();
+      } catch (e) {
+        Swal.fire('Ralat', 'Gagal memadam semua rekod: ' + e.message, 'error');
+      }
+    }
+  };
+</script>
 </body>
 </html>
