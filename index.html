@@ -134,13 +134,15 @@
     .copyright { text-align: center; margin: 8px 0; font-size: 7.5pt; color: #9ca3af; }
     .view-section { display: none; }
     .view-section.active { display: block; }
-    .analysis-chart-box { background: #fff; border: 1px solid #bbf7d0; border-radius: 8px; margin: 0 12px 8px; padding: 8px 10px; }
-    .analysis-chart-box canvas { width: 100% !important; height: 170px !important; }
+    .analysis-chart-box { background: #fff; border: 1px solid #bbf7d0; border-radius: 8px; margin: 0 12px 6px; padding: 5px 8px; }
+    .analysis-chart-box canvas { width: 100% !important; height: 105px !important; }
+    .analysis-chart-box .section-title { font-size: 9pt; }
     .export-only-wrap { margin: 0 12px 10px; }
     .record-masjid-1 { background-color: #ecfdf5 !important; border-color: #86efac !important; }
     .record-masjid-2 { background-color: #eff6ff !important; border-color: #93c5fd !important; }
     .record-masjid-3 { background-color: #fff7ed !important; border-color: #fdba74 !important; }
     .record-tidak-kuliah { background-color: #fff1f2 !important; border-color: #fda4af !important; }
+    .record-card { margin-bottom: 6px !important; } .record-card .card-body { padding: 5px 7px !important; font-size: 8.5pt; line-height: 1.15; } .record-card h6 { font-size: 10pt; margin-top: 3px !important; } .record-card .badge { font-size: 7pt; padding: 3px 6px; } .record-card small { font-size: 7.5pt; } .record-card .mt-1 { margin-top: 3px !important; }
   </style>
 </head>
 <body>
@@ -161,7 +163,7 @@
           <div class="bg-white text-dark px-2 py-0.5 rounded shadow-sm fw-bold" id="currentHeaderDate" style="font-size: 7.5pt; color: var(--primary) !important;">
             08/10/2026
           </div>
-          <button type="button" class="btn btn-sm btn-light text-danger py-0.5 px-2 fw-bold shadow-sm" id="logoutBtn" style="font-size: 7.5pt; position: relative; z-index: 10;">
+          <button type="button" class="btn btn-sm btn-light text-danger py-0.5 px-2 fw-bold shadow-sm" id="logoutBtn" onclick="logKeluar()" style="font-size: 7.5pt; position: relative; z-index: 10;">
             <i class="fas fa-sign-out-alt me-1"></i> Log Keluar
           </button>
         </div>
@@ -438,33 +440,19 @@
       }
     });
 
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-      logoutBtn.onclick = function() {
-        Swal.fire({
-          title: 'Log Keluar?',
-          text: 'Adakah anda pasti mahu log keluar daripada sistem?',
-          icon: 'question',
-          showCancelButton: true,
-          confirmButtonColor: '#550000',
-          cancelButtonColor: '#6c757d',
-          confirmButtonText: 'Ya',
-          cancelButtonText: 'Batal'
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            try {
-              await signOut(auth);
-              await Swal.fire('Berjaya', 'Anda telah log keluar.', 'success');
-              window.location.href = window.location.origin + window.location.pathname;
-            } catch (error) {
-              Swal.fire('Ralat', 'Gagal log keluar: ' + error.message, 'error');
-            }
-          }
-        });
-      };
-    }
-
-    await muatSenaraiRekod();
+        window.logKeluar = async function() {
+      const result = await Swal.fire({ title: 'Log Keluar?', text: 'Adakah anda pasti mahu log keluar daripada sistem?', icon: 'question', showCancelButton: true, confirmButtonColor: '#550000', cancelButtonColor: '#6c757d', confirmButtonText: 'Ya', cancelButtonText: 'Batal' });
+      if (!result.isConfirmed) return;
+      try {
+        await signOut(auth);
+        currentUser = null;
+        await Swal.fire({ title: 'Berjaya', text: 'Anda telah log keluar.', icon: 'success', confirmButtonColor: '#550000' });
+        document.querySelector('.app-container').innerHTML = '<div class="d-flex flex-column align-items-center justify-content-center text-center p-4" style="min-height:100vh"><i class="fas fa-sign-out-alt fa-3x mb-3" style="color:#550000"></i><h4>Anda telah log keluar</h4><button class="btn btn-custom-blue mt-3" onclick="window.location.reload()">Masuk Semula</button></div>';
+      } catch (error) {
+        Swal.fire('Ralat', 'Gagal log keluar: ' + error.message, 'error');
+      }
+    };
+await muatSenaraiRekod();
   };
 
   window.handleTopBack = function() {
@@ -707,7 +695,7 @@
     const monthLabel = document.getElementById('chartMonthLabel');
     if (monthLabel) monthLabel.innerText = now.toLocaleDateString('ms-MY', { month: 'long', year: 'numeric' });
     if (kuliahMonthChart) kuliahMonthChart.destroy();
-    kuliahMonthChart = new Chart(canvas, { type: 'bar', data: { labels, datasets: [{ label: 'Kuliah', data: kuliah, backgroundColor: '#16a34a' }, { label: 'Tidak Kuliah', data: tidakKuliah, backgroundColor: '#fb7185' }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }, plugins: { legend: { position: 'bottom' } } } });
+    kuliahMonthChart = new Chart(canvas, { type: 'bar', data: { labels, datasets: [{ label: 'Kuliah', data: kuliah, backgroundColor: '#16a34a' }, { label: 'Tidak Kuliah', data: tidakKuliah, backgroundColor: '#fb7185' }] }, options: { responsive: true, maintainAspectRatio: false, layout: { padding: 0 }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 18, padding: 8, font: { size: 10 } } } } } });
   }
   function renderSenarai(records) {
     const container = document.getElementById('senaraiContainer');
@@ -739,8 +727,8 @@
         : `<div class="mt-1 text-danger"><i class="fas fa-exclamation-triangle me-1"></i> Sebab: ${item.sebab || '-'}</div>`;
 
       html += `
-        <div class="card record-card mb-2 ${cardColorClass}">
-          <div class="card-body p-2">
+        <div class="card record-card ${cardColorClass}">
+          <div class="card-body">
             <div class="d-flex justify-content-between align-items-start">
               <div>
                 ${statusBadge}
