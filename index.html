@@ -584,7 +584,7 @@
     try {
       const docRef = doc(db, 'TetapanAplikasi', 'maklumatGuruTakmir');
       await setDoc(docRef, { nama, noKp, noHp, jajahan, pekerjaan, updatedAt: serverTimestamp() });
-      maklumatGuru = { nama, noKp, noHp, jajahan, pekerjaan };
+      await muatMaklumatGuru();
       Swal.fire('BERJAYA!', 'Maklumat guru telah dikemaskini.', 'success');
     } catch (e) {
       Swal.fire('RALAT!', 'Gagal menyimpan maklumat guru: ' + e.message, 'error');
