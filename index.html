@@ -483,7 +483,7 @@
   let currentUser = null;
   let allCachedRecords = [];
   let currentActiveTab = 'utama';
-  let maklumatGuru = { nama:'ASRI BIN MOHD ZAIN', noKp:'701117715109', noHp:'019 - 946 7894', jajahan:'Pasir Mas', pekerjaan:'GURU (Arab/Agama) YIK' };
+  let maklumatGuru = { nama:'', noKp:'', noHp:'', jajahan:'', pekerjaan:'' };
 
   async function initAuth() {
     try {
@@ -557,9 +557,9 @@
     try {
       const docRef = doc(db, 'TetapanAplikasi', 'maklumatGuruTakmir');
       const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) maklumatGuru = { ...maklumatGuru, ...docSnap.data() };
+      if (docSnap.exists()) { maklumatGuru = docSnap.data(); } else { maklumatGuru = { nama:'', noKp:'', noHp:'', jajahan:'', pekerjaan:'' }; }
     } catch (e) {
-      console.error('Error loading teacher information:', e);
+      console.error('Error loading teacher information:', e); Swal.fire('RALAT!', 'Maklumat guru tidak dapat dimuatkan daripada Tetapan: ' + e.message, 'error');
     }
     document.getElementById('inputNamaGuru').value = maklumatGuru.nama || '';
     document.getElementById('inputNoKpGuru').value = maklumatGuru.noKp || '';
@@ -593,10 +593,11 @@
     }
   };
 
-  window.switchTab = function(tabName, pushState = true) {
+  window.switchTab = async function(tabName, pushState = true) {
     const previousTab = currentActiveTab;
     currentActiveTab = tabName;
     
+    if (tabName === 'tetapan') await muatMaklumatGuru();
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
 
