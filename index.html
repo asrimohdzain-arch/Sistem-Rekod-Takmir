@@ -31,7 +31,7 @@
       color: #1f2937;
       font-size: 9.5pt;
       width: 100vw;
-      overflow-x: hidden;
+      overflow: hidden;
     }
     
     .swal2-popup { width: 250px !important; padding: 0.6rem !important; font-size: 0.72rem !important; border-radius: 10px !important; }
@@ -45,15 +45,15 @@
 
     .app-container { 
       width: 100% !important; 
-      max-width: 480px !important; 
-      margin: 0 auto; 
-      height: 100vh;
-      max-height: 100vh;
+      max-width: 100% !important; 
+      margin: 0; 
+      height: 100dvh;
+      min-height: 100vh;
       overflow: hidden;
       background: #f8fafc; 
       position: relative; 
-      padding-bottom: 50px; 
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
+      padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); 
+      box-shadow: none; 
       display: flex;
       flex-direction: column;
     }
@@ -157,19 +157,19 @@
     .date-input-centered { text-align: center; text-align-last: center; display: flex; align-items: center; justify-content: center; height: 32px; font-size: 8.5pt; }
 
     .bottom-nav {
-      position: absolute; bottom: 0; left: 0; width: 100%; background: white;
-      display: flex; justify-content: space-around; padding: 5px 0;
-      border-top: 1px solid #e5e7eb; z-index: 1000; height: 50px;
+      position: fixed; bottom: 0; left: 0; right: 0; width: 100%; background: white;
+      display: flex; justify-content: space-around; align-items: center; padding: 5px 0 calc(5px + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid #e5e7eb; z-index: 9999; min-height: 50px; box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
     }
     .nav-item-btn {
       background: none; border: none; display: flex; flex-direction: column;
-      align-items: center; color: #9ca3af; font-size: 7pt; font-weight: 600; cursor: pointer; padding: 1px 6px;
+      align-items: center; justify-content: center; color: #9ca3af; font-size: 7pt; font-weight: 600; cursor: pointer; padding: 2px 6px; min-width: 64px; min-height: 42px;
     }
     .nav-item-btn i { font-size: 10pt; margin-bottom: 1px; }
     .nav-item-btn.active { color: var(--primary); }
 
     .copyright { text-align: center; margin: 2px 0 4px 0; font-size: 7pt; color: #9ca3af; }
-    .view-section { display: none; flex: 1; flex-direction: column; height: calc(100vh - 50px); overflow-y: auto; }
+    .view-section { display: none; flex: 1; flex-direction: column; min-height: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
     .view-section.active { display: flex; }
     
     /* Announcement Box Style - Slightly increased height */
