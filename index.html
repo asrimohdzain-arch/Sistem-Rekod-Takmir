@@ -427,11 +427,14 @@
 
       <div class="mb-2">
         <label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;">Pilih Tarikh untuk Padam</label>
-        <div class="input-group input-group-sm mb-2">
+        <div class="input-group input-group-sm">
           <input type="date" id="tarikhHapus2" class="form-control date-input-centered" style="font-size: 8.5pt;">
           <button class="btn btn-outline-danger fw-bold py-1 px-2" style="font-size: 8.5pt;" onclick="padamMengikutTarikhCustom('tarikhHapus2')"><i class="fas fa-calendar-times me-1"></i> Padam Tarikh</button>
         </div>
-        <button class="btn btn-danger fw-bold py-2 w-100" style="font-size: 8.5pt; border-radius: 8px;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
+      </div>
+
+      <div class="d-grid mt-auto pt-3">
+        <button class="btn btn-danger fw-bold py-2" style="font-size: 8.5pt; border-radius: 8px;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
       </div>
     </div>
   </div>
@@ -483,7 +486,7 @@
   let currentUser = null;
   let allCachedRecords = [];
   let currentActiveTab = 'utama';
-  let maklumatGuru = { nama:'', noKp:'', noHp:'', jajahan:'', pekerjaan:'' };
+  let maklumatGuru = { nama:'ASRI BIN MOHD ZAIN', noKp:'701117715109', noHp:'019 - 946 7894', jajahan:'Pasir Mas', pekerjaan:'GURU (Arab/Agama) YIK' };
 
   async function initAuth() {
     try {
@@ -557,9 +560,9 @@
     try {
       const docRef = doc(db, 'TetapanAplikasi', 'maklumatGuruTakmir');
       const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) { maklumatGuru = docSnap.data(); } else { maklumatGuru = { nama:'', noKp:'', noHp:'', jajahan:'', pekerjaan:'' }; }
+      if (docSnap.exists()) maklumatGuru = { ...maklumatGuru, ...docSnap.data() };
     } catch (e) {
-      console.error('Error loading teacher information:', e); Swal.fire('RALAT!', 'Maklumat guru tidak dapat dimuatkan daripada Tetapan: ' + e.message, 'error');
+      console.error('Error loading teacher information:', e);
     }
     document.getElementById('inputNamaGuru').value = maklumatGuru.nama || '';
     document.getElementById('inputNoKpGuru').value = maklumatGuru.noKp || '';
@@ -581,7 +584,7 @@
     try {
       const docRef = doc(db, 'TetapanAplikasi', 'maklumatGuruTakmir');
       await setDoc(docRef, { nama, noKp, noHp, jajahan, pekerjaan, updatedAt: serverTimestamp() });
-      await muatMaklumatGuru();
+      maklumatGuru = { nama, noKp, noHp, jajahan, pekerjaan };
       Swal.fire('BERJAYA!', 'Maklumat guru telah dikemaskini.', 'success');
     } catch (e) {
       Swal.fire('RALAT!', 'Gagal menyimpan maklumat guru: ' + e.message, 'error');
@@ -593,11 +596,10 @@
     }
   };
 
-  window.switchTab = async function(tabName, pushState = true) {
+  window.switchTab = function(tabName, pushState = true) {
     const previousTab = currentActiveTab;
     currentActiveTab = tabName;
     
-    if (tabName === 'tetapan') await muatMaklumatGuru();
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
 
