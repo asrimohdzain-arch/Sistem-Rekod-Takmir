@@ -82,9 +82,6 @@
         grid-row: 2;
         width: 100% !important;
       }
-      .bottom-nav {
-        display: none !important;
-      }
     }
 
     @media (max-width: 991px) {
@@ -92,7 +89,7 @@
         display: none !important;
       }
       .app-container {
-        padding-bottom: 70px;
+        padding-bottom: 20px;
       }
     }
 
@@ -178,7 +175,7 @@
       font-weight: 600;
     }
 
-    /* Navigasi Mudah Alih (Mobile Bottom Nav) */
+    /* Navigasi Mudah Alih (Mobile Top Nav) */
     .top-nav-card-mobile {
       background: var(--card-white);
       border-radius: 16px;
@@ -346,11 +343,6 @@
     #sebabArea { background-color: #fef2f2; border: 1px solid #fecdd3; border-radius: 14px; padding: 12px; margin-top: 10px; display: none; }
     .date-input-centered { text-align: center; text-align-last: center; display: flex; align-items: center; justify-content: center; height: 38px; font-size: 9pt; }
     
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-white);
-      display: flex; justify-content: space-around; padding: 6px 0;
-      border-top: 1px solid var(--border-color); z-index: 1000; height: 56px;
-    }
     .copyright { text-align: center; margin: 8px 0; font-size: 7.5pt; color: var(--text-muted); grid-column: 1 / -1; }
     
     .view-section { display: none; flex-direction: column; gap: 12px; width: 100%; }
@@ -403,7 +395,7 @@
   <!-- KAWASAN UTAMA (MAIN CONTENT AREA) -->
   <div class="main-content-area" style="display: flex; flex-direction: column; width: 100%;">
     
-    <!-- Navigasi Mobile (Hanya muncul di telefon) -->
+    <!-- Navigasi Mobile (Hanya muncul di telefon - Bahagian Atas) -->
     <div class="top-nav-card-mobile d-lg-none">
       <button class="nav-pill-btn active" id="nav-btn-utama" onclick="switchTab('utama')">
         <i class="fas fa-chart-pie"></i> Utama
@@ -613,21 +605,6 @@
     Copyright &copy; 2026 | Asri Mohd Zain
   </div>
 
-  <!-- Bottom Nav untuk Telefon Bimbit -->
-  <div class="bottom-nav d-lg-none">
-    <button class="nav-pill-btn active" id="nav-btn-utama-m" onclick="switchTab('utama')">
-      <i class="fas fa-home"></i> Utama
-    </button>
-    <button class="nav-pill-btn" id="nav-btn-borang-m" onclick="switchTab('borang')">
-      <i class="fas fa-edit"></i> Borang
-    </button>
-    <button class="nav-pill-btn" id="nav-btn-senarai-m" onclick="switchTab('senarai')">
-      <i class="fas fa-list-ul"></i> Senarai
-    </button>
-    <button class="nav-pill-btn" id="nav-btn-tetapan-m" onclick="switchTab('tetapan')">
-      <i class="fas fa-cog"></i> Tetapan
-    </button>
-  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -769,9 +746,6 @@
 
     const navBtn = document.getElementById('nav-btn-' + tabName);
     if(navBtn) navBtn.classList.add('active');
-
-    const navBtnM = document.getElementById('nav-btn-' + tabName + '-m');
-    if(navBtnM) navBtnM.classList.add('active');
 
     window.scrollTo(0,0);
     if (pushState) { 
