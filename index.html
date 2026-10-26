@@ -11,284 +11,378 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <style>
     :root { 
-      --primary: #550000; 
-      --primary-hover: #3a0000;
-      --btn-dark-blue: #1e3a8a;
-      --btn-dark-blue-hover: #1e40af;
-      --accent-red: #990000;
-      --green-bg: #f0fdf4;
-      --green-border: #bbf7d0;
-      --green-text: #166534;
-      --green-subtext: #15803d;
+      --navy-dark: #0a101d; 
+      --navy-card: #0f172a;
+      --navy-hover: #1e293b;
+      --navy-btn: #0f172a;
+      --bg-light: #f1f5f9;
+      --card-white: #ffffff;
+      --border-color: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
     }
     * { box-sizing: border-box; }
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', sans-serif;
-      color: #1f2937;
+      background-color: var(--bg-light);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
       font-size: 9.5pt;
       width: 100vw;
       overflow-x: hidden;
     }
     
-    .swal2-popup { width: 250px !important; padding: 0.6rem !important; font-size: 0.72rem !important; border-radius: 10px !important; }
-    .swal2-title { font-size: 0.95rem !important; margin-bottom: 0.3rem !important; }
-    .swal2-html-container { font-size: 0.75rem !important; margin: 0.3rem 0 !important; }
-    .swal2-icon { width: 32px !important; height: 32px !important; margin: 0.3rem auto !important; font-size: 0.7rem !important; }
-    .swal2-icon .swal2-icon-content { font-size: 1rem !important; }
-    .swal2-actions { margin-top: 0.5rem !important; }
-    .swal2-styled { padding: 4px 12px !important; font-size: 0.72rem !important; border-radius: 5px !important; }
-    .swal2-input { font-size: 0.75rem !important; height: 32px !important; margin: 0.3rem auto !important; }
-    
-    /* Kemaskini Skrin Komputer & Telefon Penuh */
+    .swal2-popup { width: 260px !important; padding: 0.8rem !important; font-size: 0.75rem !important; border-radius: 16px !important; }
+    .swal2-title { font-size: 1rem !important; margin-bottom: 0.4rem !important; }
+    .swal2-html-container { font-size: 0.78rem !important; margin: 0.4rem 0 !important; }
+    .swal2-icon { width: 36px !important; height: 36px !important; margin: 0.4rem auto !important; }
+    .swal2-styled { padding: 6px 16px !important; font-size: 0.75rem !important; border-radius: 30px !important; }
+
     .app-container { 
       width: 100% !important; 
       max-width: 100% !important; 
       margin: 0 auto; 
-      height: 100vh;
-      max-height: 100vh;
-      overflow: hidden;
-      background: #f8fafc; 
+      min-height: 100vh;
+      background: var(--bg-light); 
       position: relative; 
-      padding-bottom: 50px; 
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
+      padding: 12px;
+      padding-bottom: 70px; 
       display: flex;
       flex-direction: column;
+      gap: 12px;
     }
 
-    @media (min-width: 768px) {
-      .app-container {
-        max-width: 100% !important;
-        border-radius: 0;
-      }
-    }
-
+    /* Card Header Gaya Dark Navy */
     .hero-header {
-      background: linear-gradient(135deg, #550000 0%, #3a0000 100%);
+      background: var(--navy-card);
       color: white;
-      padding: 6px 10px;
-      border-bottom: 2px solid #ffc107;
+      padding: 20px 16px;
+      border-radius: 20px;
       position: relative;
-      overflow: hidden;
-      margin-bottom: 6px;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
     }
-    .hero-title { font-size: 12.5pt; font-weight: 700; margin: 0; line-height: 1.1; text-align: center; color: #ffffff !important; }
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0 10px; margin-bottom: 6px; }
-    .stat-card {
-      background: var(--green-bg);
-      padding: 6px 4px;
-      border-radius: 6px;
-      text-align: center;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-      border: 1px solid var(--green-border);
+    .hero-title { font-size: 15pt; font-weight: 800; margin: 0 0 2px 0; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.5px; color: #ffffff !important; }
+    .hero-subtitle { font-size: 8.5pt; color: #94a3b8; font-weight: 500; margin-bottom: 12px; }
+    
+    .header-date-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 8pt;
+      color: #e2e8f0;
+      font-weight: 600;
     }
-    .stat-card h3 { font-size: 11pt; font-weight: 700; color: var(--green-text); margin: 0; }
-    .stat-card p { font-size: 7pt; color: var(--green-subtext); margin: 1px 0 0 0; font-weight: 500; }
-    .section-title { font-size: 9.5pt; font-weight: 700; color: #111827; margin: 0 0 1px 0; }
-    .section-subtitle { font-size: 7pt; color: #6b7280; margin: 0 0 4px 0; }
-    .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 0 10px; margin-bottom: 6px; }
-    .menu-card {
-      background: var(--green-bg);
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--green-border);
+
+    /* Navigasi Butang Melengkung Kad */
+    .top-nav-card {
+      background: var(--card-white);
+      border-radius: 20px;
+      padding: 6px;
+      display: flex;
+      justify-content: space-around;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-color);
+    }
+    .nav-pill-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 4px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-dark);
+      font-size: 8pt;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+    .nav-pill-btn i { font-size: 13pt; }
+    .nav-pill-btn.active {
+      background: var(--navy-card);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
+    }
+
+    /* Butang Utama Oval Melengkung Penuh */
+    .btn-action-pill {
+      background: var(--navy-card) !important;
+      color: #ffffff !important;
+      border: none !important;
+      border-radius: 30px !important;
+      padding: 10px 16px !important;
+      font-weight: 700 !important;
+      font-size: 9pt !important;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+      transition: all 0.2s ease;
+    }
+    .btn-action-pill:hover {
+      background: var(--navy-hover) !important;
+      transform: translateY(-1px);
+    }
+
+    /* Kad Ringkasan / Stat & Kotak Kandungan */
+    .stat-card-row {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      gap: 10px;
     }
-    .menu-card:hover { border-color: var(--green-text); transform: translateY(-1px); }
-    .menu-icon {
-      width: 24px; height: 24px; border-radius: 4px;
-      background: #dcfce7; color: var(--green-text);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 8.5pt; margin-bottom: 2px;
+    .info-card {
+      background: var(--card-white);
+      border-radius: 18px;
+      padding: 14px 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      position: relative;
+      border-left: 4px solid var(--navy-card);
     }
-    .menu-card h5 { font-size: 9pt; font-weight: 700; margin: 0 0 1px 0; color: #1f2937; }
-    .menu-card p { font-size: 7pt; color: var(--green-subtext); margin: 0; }
+    .info-card-label {
+      font-size: 7.5pt;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .info-card-value {
+      font-size: 18pt;
+      font-weight: 800;
+      color: var(--navy-card);
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat-card-mini {
+      background: var(--card-white);
+      padding: 12px 8px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .stat-card-mini h3 { font-size: 13pt; font-weight: 800; color: var(--navy-card); margin: 0; }
+    .stat-card-mini p { font-size: 7pt; color: var(--text-muted); margin: 2px 0 0 0; font-weight: 600; }
+
     .content-box {
-      background: var(--green-bg);
-      border-radius: 10px;
-      padding: 10px;
-      margin: 4px 10px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-      border: 1px solid var(--green-border);
+      background: var(--card-white);
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      border: 1px solid var(--border-color);
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
     }
-    #rekodForm {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .form-content-wrap {
-      flex: 1;
-    }
-    .label-custom { font-weight: 600; font-size: 8.5pt; margin-top: 6px; margin-bottom: 3px; display: flex; align-items: center; color: #374151; }
-    .label-custom i { margin-right: 5px; color: var(--primary); width: 12px; text-align: center; }
-    .radio-group { background: #ffffff; padding: 6px 8px; border: 1px solid #e5e7eb; border-radius: 6px; margin-bottom: 3px; }
-    .form-check { margin-bottom: 4px; }
-    .form-check:last-child { margin-bottom: 0; }
-    .form-check-label { cursor: pointer; font-size: 8.5pt; font-weight: 500; }
-    .btn-custom-blue {
-      background-color: var(--btn-dark-blue) !important;
-      color: white !important; border: none !important;
-      font-weight: 600; border-radius: 6px; padding: 6px; font-size: 8.5pt;
-    }
-    .btn-custom-blue:hover { background-color: var(--btn-dark-blue-hover) !important; }
-    .btn-submit-design {
-      background: var(--primary) !important; color: white !important;
-      width: 100%; padding: 9px; border-radius: 6px; font-weight: 600;
-      margin-top: auto; border: none !important; font-size: 9pt;
-    }
-    .btn-submit-design:hover { background: var(--primary-hover) !important; }
-    #kuliahArea { background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 8px; margin-top: 6px; }
-    #sebabArea { background-color: #fff1f2; border: 1px solid #fecdd3; border-radius: 6px; padding: 8px; margin-top: 6px; display: none; }
-    .date-input-centered { text-align: center; text-align-last: center; display: flex; align-items: center; justify-content: center; height: 32px; font-size: 8.5pt; }
-    .bottom-nav {
-      position: absolute; bottom: 0; left: 0; width: 100%; background: white;
-      display: flex; justify-content: space-around; padding: 5px 0;
-      border-top: 1px solid #e5e7eb; z-index: 1000; height: 50px;
-    }
-    .nav-item-btn {
-      background: none; border: none; display: flex; flex-direction: column;
-      align-items: center; color: #9ca3af; font-size: 7pt; font-weight: 600; cursor: pointer; padding: 1px 6px;
-    }
-    .nav-item-btn i { font-size: 10pt; margin-bottom: 1px; }
-    .nav-item-btn.active { color: var(--primary); }
-    .copyright { text-align: center; margin: 2px 0 4px 0; font-size: 7pt; color: #9ca3af; }
-    .view-section { display: none; flex: 1; flex-direction: column; height: calc(100vh - 50px); overflow-y: auto; }
-    .view-section.active { display: flex; }
-    
-    /* Announcement Box Style - Slightly increased height */
+
     .announcement-box {
-      background: #ffffff;
-      border: 1px solid var(--green-border);
-      border-left: 3px solid var(--primary);
-      border-radius: 6px;
-      margin: 0 10px 4px;
-      padding: 6px 10px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-      height: 138px;
-      min-height: 138px;
-      max-height: 138px;
+      background: var(--card-white);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--navy-card);
+      border-radius: 18px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      height: 120px;
+      min-height: 120px;
+      max-height: 120px;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
     }
     .announcement-title {
       font-size: 8.5pt;
-      font-weight: 700;
-      color: var(--primary);
+      font-weight: 800;
+      color: var(--navy-card);
       margin-bottom: 4px;
       display: flex;
       align-items: center;
     }
     .announcement-content {
       font-size: 8.5pt;
-      color: #374151;
+      color: #334155;
       margin: 0;
       white-space: pre-wrap;
       word-break: break-word;
       flex: 1;
     }
-    .export-only-wrap { margin: 0 10px 4px; }
-    .record-masjid-1 { background-color: #ecfdf5 !important; border-color: #86efac !important; }
-    .record-masjid-2 { background-color: #eff6ff !important; border-color: #93c5fd !important; }
-    .record-masjid-3 { background-color: #fff7ed !important; border-color: #fdba74 !important; }
-    .record-tidak-kuliah { background-color: #fff1f2 !important; border-color: #fda4af !important; }
-    .record-card { margin-bottom: 6px !important; } .record-card .card-body { padding: 5px 7px !important; font-size: 8.5pt; line-height: 1.15; } .record-card h6 { font-size: 9.5pt; margin-top: 3px !important; } .record-card .badge { font-size: 7pt; padding: 3px 6px; } .record-card small { font-size: 7.5pt; } .record-card .mt-1 { margin-top: 3px !important; }
+
+    .section-header-title {
+      font-size: 10pt;
+      font-weight: 800;
+      color: var(--navy-card);
+      margin: 4px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .menu-card {
+      background: var(--card-white);
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .menu-card:hover { border-color: var(--navy-card); transform: translateY(-2px); }
+    .menu-icon {
+      width: 28px; height: 28px; border-radius: 10px;
+      background: #f1f5f9; color: var(--navy-card);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9pt; margin-bottom: 6px;
+    }
+    .menu-card h5 { font-size: 9.5pt; font-weight: 700; margin: 0 0 2px 0; color: var(--navy-card); }
+    .menu-card p { font-size: 7.5pt; color: var(--text-muted); margin: 0; }
+
+    #rekodForm { display: flex; flex-direction: column; flex: 1; }
+    .form-content-wrap { flex: 1; }
+    .label-custom { font-weight: 700; font-size: 8.5pt; margin-top: 8px; margin-bottom: 4px; display: flex; align-items: center; color: var(--navy-card); }
+    .label-custom i { margin-right: 6px; color: var(--navy-card); width: 14px; text-align: center; }
+    .radio-group { background: #f8fafc; padding: 8px 10px; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 4px; }
+    .form-check { margin-bottom: 4px; }
+    .form-check:last-child { margin-bottom: 0; }
+    .form-check-label { cursor: pointer; font-size: 8.5pt; font-weight: 500; }
+    
+    .form-control, .form-select {
+      border-radius: 12px !important;
+      border: 1px solid var(--border-color) !important;
+      padding: 8px 12px !important;
+    }
+    
+    #kuliahArea { background-color: #f8fafc; border: 1px solid var(--border-color); border-radius: 14px; padding: 10px; margin-top: 8px; }
+    #sebabArea { background-color: #fef2f2; border: 1px solid #fecdd3; border-radius: 14px; padding: 10px; margin-top: 8px; display: none; }
+    .date-input-centered { text-align: center; text-align-last: center; display: flex; align-items: center; justify-content: center; height: 36px; font-size: 8.5pt; }
+    
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-white);
+      display: flex; justify-content: space-around; padding: 6px 0;
+      border-top: 1px solid var(--border-color); z-index: 1000; height: 56px;
+    }
+    .copyright { text-align: center; margin: 4px 0; font-size: 7.5pt; color: var(--text-muted); }
+    .view-section { display: none; flex: 1; flex-direction: column; height: auto; min-height: calc(100vh - 80px); }
+    .view-section.active { display: flex; }
+    
+    .record-masjid-1 { background-color: #f0fdf4 !important; border-color: #bbf7d0 !important; }
+    .record-masjid-2 { background-color: #eff6ff !important; border-color: #bfdbfe !important; }
+    .record-masjid-3 { background-color: #fff7ed !important; border-color: #ffedd5 !important; }
+    .record-tidak-kuliah { background-color: #fef2f2 !important; border-color: #fecdd3 !important; }
+    .record-card { margin-bottom: 8px !important; border-radius: 14px !important; border: 1px solid var(--border-color) !important; } 
+    .record-card .card-body { padding: 8px 10px !important; font-size: 8.5pt; line-height: 1.2; } 
+    .record-card h6 { font-size: 9.5pt; margin-top: 4px !important; font-weight: 700; } 
+    .record-card .badge { font-size: 7pt; padding: 4px 8px; border-radius: 20px; } 
   </style>
 </head>
 <body>
 <div class="app-container">
+  <!-- KAD HEADER BERGAYA DARK NAVY -->
+  <div class="hero-header">
+    <h4 class="hero-title">Sistem Rekod Takmir</h4>
+    <div class="hero-subtitle">Pengurusan Rekod & Laporan Takmir</div>
+    <div class="header-date-badge">
+      <i class="far fa-calendar-alt me-1.5"></i> <span id="currentHeaderDate">26 Oktober 2026</span>
+    </div>
+  </div>
+
+  <!-- KAD NAVIGASI UTAMA MELENGKUNG -->
+  <div class="top-nav-card">
+    <button class="nav-pill-btn active" id="nav-btn-utama" onclick="switchTab('utama')">
+      <i class="fas fa-chart-pie"></i>
+      Utama
+    </button>
+    <button class="nav-pill-btn" id="nav-btn-borang" onclick="switchTab('borang')">
+      <i class="fas fa-edit"></i>
+      Borang
+    </button>
+    <button class="nav-pill-btn" id="nav-btn-senarai" onclick="switchTab('senarai')">
+      <i class="fas fa-list-ul"></i>
+      Senarai
+    </button>
+    <button class="nav-pill-btn" id="nav-btn-tetapan" onclick="switchTab('tetapan')">
+      <i class="fas fa-cog"></i>
+      Tetapan
+    </button>
+  </div>
+
   <!-- VIEW 1: UTAMA / DASHBOARD -->
   <div id="view-utama" class="view-section active">
-    <div class="hero-header">
-      <div class="d-flex flex-column align-items-center justify-content-center text-center w-100 position-relative">
-        <div class="d-flex justify-content-between align-items-center w-100 mb-1">
-          <div class="bg-white text-dark px-2 py-0.5 rounded shadow-sm fw-bold" id="currentHeaderDate" style="font-size: 7pt; color: var(--primary) !important;">
-            08/10/2026
-          </div>
-        </div>
-        <div class="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center shadow-sm mb-1" style="width: 34px; height: 34px; min-width: 34px;">
-          <i class="fas fa-mosque" style="color: var(--primary); font-size: 13pt;"></i>
-        </div>
-        <div>
-          <h4 class="hero-title" style="font-size: 12.5pt; white-space: nowrap;">Sistem Rekod Takmir</h4>
-        </div>
+    
+    <div class="section-header-title">
+      <i class="fas fa-chart-line"></i> Analisa Rekod Takmir
+    </div>
+
+    <!-- BUTANG TAMBAH REKOD MELENGKUNG (RUJUKAN GAMBAR) -->
+    <button class="btn-action-pill mb-2" onclick="switchTab('borang')">
+      <i class="fas fa-plus"></i> Tambah Rekod Baharu
+    </button>
+
+    <!-- KAD STATISTIK UTAMA -->
+    <div class="stat-card-row mb-2">
+      <div class="info-card">
+        <div class="info-card-label">Jumlah Keseluruhan Rekod</div>
+        <div class="info-card-value" id="statJumlah">0</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Purata Kehadiran Jemaah</div>
+        <div class="info-card-value" style="font-size: 14pt;" id="statPurataJemaah">0 Jemaah / Kuliah</div>
       </div>
     </div>
-    <!-- Summary Stats -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3 id="statJumlah">0</h3>
+
+    <!-- STAT MINI 3 KOLUM -->
+    <div class="stats-grid mb-2">
+      <div class="stat-card-mini">
+        <h3 id="statJumlahMini">0</h3>
         <p>Jumlah Kuliah</p>
       </div>
-      <div class="stat-card">
+      <div class="stat-card-mini">
         <h3 id="statBulanIni">0</h3>
         <p>Bulan Ini</p>
       </div>
-      <div class="stat-card">
+      <div class="stat-card-mini">
         <h3 id="statMingguIni">0</h3>
         <p>Minggu Ini</p>
       </div>
     </div>
-    <!-- Purata Kehadiran Jemaah -->
-    <div class="content-box py-1.5 mb-1.5" style="flex: initial;">
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <span style="font-size: 7pt; color: var(--green-subtext); font-weight: 600; text-transform: uppercase;">Purata Kehadiran Jemaah</span>
-          <h5 class="m-0 fw-bold" style="font-size: 10pt; color: var(--green-text);" id="statPurataJemaah">0 Jemaah / Kuliah</h5>
-        </div>
-        <div class="bg-white p-1.5 rounded-circle shadow-sm" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--green-text);">
-          <i class="fas fa-users" style="font-size: 8pt;"></i>
-        </div>
-      </div>
-    </div>
-    <!-- Kotak Makluman / Pengumuman Penuh Skrin -->
-    <div class="announcement-box">
+
+    <!-- KOTAK MAKLUMAN -->
+    <div class="announcement-box mb-2">
       <div class="announcement-title">
         <i class="fas fa-bullhorn me-1.5"></i> MAKLUMAN / PENGUMUMAN
       </div>
       <p class="announcement-content" id="displayMakluman">Tiada makluman terkini.</p>
     </div>
-    <!-- Menu Utama -->
-    <div style="padding: 0 10px;">
-      <h5 class="section-title">Menu Utama</h5>
-    </div>
-    <div class="menu-grid">
-      <div class="menu-card" onclick="switchTab('borang')">
-        <div class="menu-icon"><i class="fas fa-edit"></i></div>
-        <h5>Borang Rekod</h5>
-        <p>Tambah rekod baharu</p>
-      </div>
-      <div class="menu-card" onclick="switchTab('senarai')">
-        <div class="menu-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fas fa-list-ul"></i></div>
-        <h5>Senarai Rekod</h5>
-        <p>Lihat semua rekod</p>
-      </div>
-    </div>
-    <!-- Export PDF Button -->
-    <div class="export-only-wrap">
-      <button class="btn btn-sm btn-custom-blue w-100 fw-bold py-1.5 m-0" style="font-size: 8pt;" onclick="cetakPdfTidakKuliah()"><i class="fas fa-file-pdf me-1"></i> Cetak PdF Tidak Kuliah</button>
-    </div>
+
+    <!-- BUTANG CETAK PDF -->
+    <button class="btn-action-pill" style="background: var(--navy-hover) !important;" onclick="cetakPdfTidakKuliah()">
+      <i class="fas fa-file-pdf"></i> Cetak PDF Tidak Kuliah
+    </button>
   </div>
+
   <!-- VIEW 2: BORANG REKOD -->
   <div id="view-borang" class="view-section">
     <div class="content-box">
       <div class="d-flex align-items-center mb-2">
-        <div class="bg-danger text-white rounded p-1.5 me-2" style="background: var(--primary) !important; font-size: 9pt; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
-          <i class="fas fa-file-signature"></i>
+        <div class="rounded-circle text-white p-2 me-2" style="background: var(--navy-card); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-file-signature" style="font-size: 9pt;"></i>
         </div>
-        <h5 class="section-title m-0" id="borangHeaderTitle" style="font-size: 11pt;">Borang Rekod Takmir</h5>
+        <h5 class="section-title m-0" id="borangHeaderTitle" style="font-size: 11pt; font-weight: 800;">Borang Rekod Takmir</h5>
       </div>
       <form id="rekodForm">
         <input type="hidden" id="editDocId" value="">
@@ -336,30 +430,31 @@
           </div>
         </div>
         <div class="d-flex gap-2 mt-3 mb-1">
-          <button type="button" class="btn-submit-design m-0" id="submitBtn" onclick="hantarBorang()">
+          <button type="button" class="btn-action-pill m-0" id="submitBtn" onclick="hantarBorang()">
             <i class="fas fa-save me-1"></i> SIMPAN REKOD
           </button>
-          <button type="button" class="btn btn-sm btn-secondary fw-bold mt-0 py-2 px-3" id="batalEditBtn" style="display: none; font-size: 9pt; border-radius: 8px;" onclick="batalModKemaskini()">
+          <button type="button" class="btn btn-sm btn-secondary fw-bold mt-0 py-2 px-3" id="batalEditBtn" style="display: none; font-size: 9pt; border-radius: 30px;" onclick="batalModKemaskini()">
             Batal
           </button>
         </div>
       </form>
     </div>
   </div>
+
   <!-- VIEW 3: SENARAI & PENGURUSAN -->
   <div id="view-senarai" class="view-section">
-    <div class="content-box" style="background-color: #fefce8; border-color: #fde047;">
+    <div class="content-box">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
-          <h5 class="section-title m-0">Senarai Kuliah</h5>
-          <p class="section-subtitle m-0" id="jumlahRekodLabel">Memuatkan senarai...</p>
+          <h5 class="section-title m-0" style="font-weight: 800;">Senarai Rekod Kuliah</h5>
+          <p class="section-subtitle m-0 text-muted" id="jumlahRekodLabel">Memuatkan senarai...</p>
         </div>
-        <button class="btn btn-sm btn-custom-blue py-1 px-2" style="font-size: 8.5pt;" onclick="muatSenaraiRekod()"><i class="fas fa-sync-alt"></i> Segar</button>
+        <button class="btn btn-sm btn-action-pill py-1 px-3" style="width: auto; font-size: 8pt;" onclick="muatSenaraiRekod()"><i class="fas fa-sync-alt me-1"></i> Segar</button>
       </div>
       <!-- Search Bar -->
       <div class="input-group input-group-sm mb-2">
-        <span class="input-group-text bg-white"><i class="fas fa-search text-muted" style="font-size: 8.5pt;"></i></span>
-        <input type="text" id="searchInput" class="form-control border-start-0" style="font-size: 8.5pt;" placeholder="Cari hari, tarikh, masjid..." oninput="tapisSenarai()">
+        <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px;"><i class="fas fa-search text-muted" style="font-size: 8.5pt;"></i></span>
+        <input type="text" id="searchInput" class="form-control border-start-0" style="border-radius: 0 12px 12px 0; font-size: 8.5pt;" placeholder="Cari hari, tarikh, masjid..." oninput="tapisSenarai()">
       </div>
       <div id="senaraiContainer" style="flex: 1; overflow-y: auto;">
         <div class="text-center text-muted py-3">
@@ -369,20 +464,21 @@
       </div>
     </div>
   </div>
+
   <!-- VIEW 4: TETAPAN -->
   <div id="view-tetapan" class="view-section">
     <div class="content-box">
-      <h5 class="section-title mb-1"><i class="fas fa-bullhorn me-1 text-danger"></i> Kemaskini Kotak Makluman</h5>
-      <p class="section-subtitle">Tulis makluman atau pengumuman yang akan dipaparkan di Halaman Utama</p>
+      <h5 class="section-title mb-1" style="font-weight: 800;"><i class="fas fa-bullhorn me-1 text-primary"></i> Kemaskini Kotak Makluman</h5>
+      <p class="section-subtitle text-muted">Tulis makluman atau pengumuman yang akan dipaparkan di Halaman Utama</p>
       <div class="mb-3">
         <label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;" for="inputMakluman">Teks Makluman</label>
         <textarea id="inputMakluman" class="form-control form-control-sm" rows="3" style="font-size: 8.5pt;" placeholder="Contoh: Seminar Takmir akan diadakan pada..."></textarea>
-        <button class="btn btn-sm btn-custom-blue w-100 fw-bold mt-2 py-2" style="font-size: 8.5pt;" onclick="simpanMakluman()">
+        <button class="btn-action-pill mt-2" onclick="simpanMakluman()">
           <i class="fas fa-save me-1"></i> SIMPAN MAKLUMAN
         </button>
       </div>
-      <h5 class="section-title mb-1"><i class="fas fa-user-tie me-1 text-danger"></i> Maklumat Guru Takmir</h5>
-      <p class="section-subtitle">Maklumat ini akan digunakan dalam Cetak PDF Tidak Kuliah</p>
+      <h5 class="section-title mb-1" style="font-weight: 800;"><i class="fas fa-user-tie me-1 text-primary"></i> Maklumat Guru Takmir</h5>
+      <p class="section-subtitle text-muted">Maklumat ini akan digunakan dalam Cetak PDF Tidak Kuliah</p>
       <div class="row g-2 mb-3">
         <div class="col-12">
           <label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;" for="inputNamaGuru">Nama</label>
@@ -393,47 +489,30 @@
         <div class="col-md-6"><label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;" for="inputJajahanGuru">Jajahan</label><input type="text" id="inputJajahanGuru" class="form-control form-control-sm" style="font-size: 8.5pt;"></div>
         <div class="col-md-6"><label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;" for="inputPekerjaanGuru">Pekerjaan</label><input type="text" id="inputPekerjaanGuru" class="form-control form-control-sm" style="font-size: 8.5pt;"></div>
         <div class="col-12">
-          <button class="btn btn-sm btn-custom-blue w-100 fw-bold mt-2 py-2" style="font-size: 8.5pt;" onclick="simpanMaklumatGuru()"><i class="fas fa-save me-1"></i> SIMPAN MAKLUMAT GURU</button>
+          <button class="btn-action-pill mt-2" onclick="simpanMaklumatGuru()"><i class="fas fa-save me-1"></i> SIMPAN MAKLUMAT GURU</button>
         </div>
       </div>
       <hr class="my-3 text-muted">
-      <h5 class="section-title mb-1"><i class="fas fa-tools me-1 text-danger"></i> Pengurusan & Hapus Rekod</h5>
-      <p class="section-subtitle">Urus pemadaman data pangkalan data</p>
+      <h5 class="section-title mb-1" style="font-weight: 800;"><i class="fas fa-tools me-1 text-danger"></i> Pengurusan & Hapus Rekod</h5>
+      <p class="section-subtitle text-muted">Urus pemadaman data pangkalan data</p>
       <div class="mb-2">
         <label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;">Pilih Tarikh untuk Padam</label>
         <div class="input-group input-group-sm">
           <input type="date" id="tarikhHapus2" class="form-control date-input-centered" style="font-size: 8.5pt;">
-          <button class="btn btn-outline-danger fw-bold py-1 px-2" style="font-size: 8.5pt;" onclick="padamMengikutTarikhCustom('tarikhHapus2')"><i class="fas fa-calendar-times me-1"></i> Padam Tarikh</button>
+          <button class="btn btn-outline-danger fw-bold py-1 px-3" style="font-size: 8.5pt; border-radius: 0 12px 12px 0;" onclick="padamMengikutTarikhCustom('tarikhHapus2')"><i class="fas fa-calendar-times me-1"></i> Padam Tarikh</button>
         </div>
       </div>
       <div class="d-grid mt-auto pt-3">
-        <button class="btn btn-danger fw-bold py-2" style="font-size: 8.5pt; border-radius: 8px;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
+        <button class="btn btn-danger fw-bold py-2" style="font-size: 8.5pt; border-radius: 30px;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
       </div>
     </div>
   </div>
+
   <div class="copyright">
     Copyright &copy; 2026 | Asri Mohd Zain
   </div>
-  <!-- Bottom Navigation Bar -->
-  <div class="bottom-nav">
-    <button class="nav-item-btn active" id="nav-btn-utama" onclick="switchTab('utama')">
-      <i class="fas fa-home"></i>
-      Utama
-    </button>
-    <button class="nav-item-btn" id="nav-btn-borang" onclick="switchTab('borang')">
-      <i class="fas fa-edit"></i>
-      Borang
-    </button>
-    <button class="nav-item-btn" id="nav-btn-senarai" onclick="switchTab('senarai')">
-      <i class="fas fa-list-ul"></i>
-      Senarai
-    </button>
-    <button class="nav-item-btn" id="nav-btn-tetapan" onclick="switchTab('tetapan')">
-      <i class="fas fa-cog"></i>
-      Tetapan
-    </button>
-  </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
@@ -454,6 +533,7 @@
   let allCachedRecords = [];
   let currentActiveTab = 'utama';
   let maklumatGuru = { nama:'ASRI BIN MOHD ZAIN', noKp:'701117715109', noHp:'019 - 946 7894', jajahan:'Pasir Mas', pekerjaan:'GURU (Arab/Agama) YIK' };
+  
   async function initAuth() {
     try {
       const cred = await signInAnonymously(auth);
@@ -462,6 +542,7 @@
       console.error("Auth error:", e);
     }
   }
+
   window.onload = async function() {
     await initAuth();
     var today = new Date().toISOString().split('T')[0];
@@ -469,7 +550,10 @@
     document.getElementById('tarikhHapus2').value = today;
     const partsToday = today.split('-');
     if(partsToday.length === 3) {
-      document.getElementById('currentHeaderDate').innerText = `${partsToday[2]}/${partsToday[1]}/${partsToday[0]}`;
+      const dateObj = new Date(partsToday[0], partsToday[1] - 1, partsToday[2]);
+      const days = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
+      const months = ['Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun', 'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'];
+      document.getElementById('currentHeaderDate').innerText = `${days[dateObj.getDay()]}, ${partsToday[2]} ${months[dateObj.getMonth()]} ${partsToday[0]}`;
     }
     history.replaceState({ tab: 'utama' }, '', '');
     
@@ -482,6 +566,7 @@
     await muatMaklumatGuru();
     await muatSenaraiRekod();
   };
+
   window.muatMakluman = async function() {
     try {
       const docRef = doc(db, "TetapanAplikasi", "maklumanUtama");
@@ -497,6 +582,7 @@
       console.error("Error loading announcement:", e);
     }
   };
+
   window.simpanMakluman = async function() {
     const teksInput = document.getElementById('inputMakluman').value.trim();
     try {
@@ -509,12 +595,13 @@
         title: 'BERJAYA!',
         text: 'Makluman telah dikemaskini.',
         icon: 'success',
-        confirmButtonColor: '#550000'
+        confirmButtonColor: '#0f172a'
       });
     } catch (e) {
       Swal.fire('RALAT!', 'Gagal menyimpan makluman: ' + e.message, 'error');
     }
   };
+
   window.muatMaklumatGuru = async function() {
     try {
       const docRef = doc(db, 'TetapanAplikasi', 'maklumatGuruTakmir');
@@ -529,6 +616,7 @@
     document.getElementById('inputJajahanGuru').value = maklumatGuru.jajahan || '';
     document.getElementById('inputPekerjaanGuru').value = maklumatGuru.pekerjaan || '';
   };
+
   window.simpanMaklumatGuru = async function() {
     const nama = document.getElementById('inputNamaGuru').value.trim();
     const noKp = document.getElementById('inputNoKpGuru').value.trim();
@@ -548,17 +636,13 @@
       Swal.fire('RALAT!', 'Gagal menyimpan maklumat guru: ' + e.message, 'error');
     }
   };
-  window.handleTopBack = function() {
-    if (currentActiveTab !== 'utama') {
-      switchTab('utama');
-    }
-  };
+
   window.switchTab = function(tabName, pushState = true) {
     const previousTab = currentActiveTab;
     currentActiveTab = tabName;
     
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-pill-btn').forEach(el => el.classList.remove('active'));
     document.getElementById('view-' + tabName).classList.add('active');
     const navBtn = document.getElementById('nav-btn-' + tabName);
     if(navBtn) navBtn.classList.add('active');
@@ -573,6 +657,7 @@
       } 
     }
   };
+
   window.tunjukkanBahagian = function() {
     var statusEl = document.querySelector('input[name="status"]:checked');
     if(!statusEl) return;
@@ -580,6 +665,7 @@
     document.getElementById('kuliahArea').style.display = (status === 'Kuliah') ? 'block' : 'none';
     document.getElementById('sebabArea').style.display = (status === 'Tidak Kuliah') ? 'block' : 'none';
   };
+
   window.padamBorang = function() {
     document.getElementById('rekodForm').reset();
     document.getElementById('editDocId').value = '';
@@ -594,10 +680,12 @@
     var today = new Date().toISOString().split('T')[0];
     dateField.value = today;
   };
+
   window.batalModKemaskini = function() {
     padamBorang();
     switchTab('senarai');
   };
+
   function dapatkanNamaHari(tarikhStr) {
     if (!tarikhStr) return '';
     const parts = tarikhStr.split('-');
@@ -606,6 +694,7 @@
     const hariList = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
     return hariList[dateObj.getDay()] || '';
   }
+
   window.hantarBorang = async function() {
     var form = document.getElementById('rekodForm');
     var btn = document.getElementById('submitBtn');
@@ -625,7 +714,7 @@
           title: 'TARIKH BERTINDIH!',
           text: `Rekod untuk tarikh ${namaHariIni} (${inputTarikh.split('-').reverse().join('/')}) telah wujud dalam sistem. Sila pilih tarikh lain.`,
           icon: 'error',
-          confirmButtonColor: '#550000'
+          confirmButtonColor: '#0f172a'
         });
         return;
       }
@@ -662,7 +751,7 @@
           title: 'BERJAYA!',
           text: 'Rekod Kuliah Berjaya Dikemaskini',
           icon: 'success',
-          confirmButtonColor: '#550000'
+          confirmButtonColor: '#0f172a'
         });
       } else {
         formData.createdAt = serverTimestamp();
@@ -673,7 +762,7 @@
           title: 'BERJAYA!',
           text: 'Alhamdulillah, Rekod Kuliah Berjaya Disimpan',
           icon: 'success',
-          confirmButtonColor: '#550000'
+          confirmButtonColor: '#0f172a'
         });
       }
       padamBorang();
@@ -685,6 +774,7 @@
       Swal.fire('RALAT SISTEM!', 'Ralat sistem tidak dijangka: ' + error.message, 'error');
     }
   };
+
   window.muatSenaraiRekod = async function() {
     const container = document.getElementById('senaraiContainer');
     container.innerHTML = '<div class="text-center text-muted py-3"><i class="fas fa-spinner fa-spin fa-2x"></i><p class="mt-1 small">Memuatkan senarai...</p></div>';
@@ -698,7 +788,9 @@
       snapTidak.forEach(d => { allRecords.push({ id: d.id, collectionName: 'RekodTidakKuliah', ...d.data() }); });
       allRecords.sort((a, b) => new Date(b.tarikh || 0) - new Date(a.tarikh || 0));
       allCachedRecords = allRecords;
+
       document.getElementById('statJumlah').innerText = allRecords.length;
+      document.getElementById('statJumlahMini').innerText = allRecords.length;
       
       let now = new Date();
       let currentMonth = now.toISOString().slice(0, 7);
@@ -726,6 +818,7 @@
       container.innerHTML = `<div class="text-center text-danger py-3 small">Gagal memuatkan senarai: ${error.message}</div>`;
     }
   };
+
   function renderSenarai(records) {
     const container = document.getElementById('senaraiContainer');
     document.getElementById('jumlahRekodLabel').innerText = `${records.length} rekod keseluruhan`;
@@ -744,7 +837,7 @@
       else if (item.masjid === 'Masjid Pondok') cardColorClass = 'record-masjid-2';
       else if (item.masjid === 'Masjid Hj Yaakob') cardColorClass = 'record-masjid-3';
       let statusBadge = isKuliah 
-        ? `<span class="badge bg-success">Kuliah</span>` 
+        ? `<span class="badge" style="background-color: #0f172a; color: white;">Kuliah</span>` 
         : `<span class="badge" style="background-color: #fca5a5; color: #7f1d1d;">Tidak Kuliah</span>`;
       let detailContent = isKuliah 
         ? `<div class="mt-1"><i class="fas fa-users text-muted me-1"></i> Jemaah: <b>${item.bilJemaah || 0}</b></div>`
@@ -763,7 +856,7 @@
                 <button class="btn btn-sm btn-link text-danger p-0" onclick="padamRekod('${item.id}', '${item.collectionName}')" title="Padam"><i class="fas fa-trash-alt"></i></button>
               </div>
             </div>
-            <h6 class="text-dark mt-1 mb-0"><i class="fas fa-mosque text-danger me-1"></i> ${item.masjid || '-'}</h6>
+            <h6 class="text-dark mt-1 mb-0"><i class="fas fa-mosque me-1" style="color: var(--navy-card);"></i> ${item.masjid || '-'}</h6>
             ${detailContent}
           </div>
         </div>
@@ -771,6 +864,7 @@
     });
     container.innerHTML = html;
   }
+
   window.tapisSenarai = function() {
     let keyword = document.getElementById('searchInput').value.toLowerCase();
     let filtered = allCachedRecords.filter(item => {
@@ -784,6 +878,7 @@
     });
     renderSenarai(filtered);
   };
+
   window.editRekod = async function(id, colName) {
     let target = allCachedRecords.find(r => r.id === id && r.collectionName === colName);
     if (!target) return;
@@ -810,6 +905,7 @@
     document.getElementById('batalEditBtn').style.display = 'block';
     switchTab('borang');
   };
+
   window.padamRekod = async function(id, colName) {
     Swal.fire({
       title: 'Padam Rekod Ini?',
@@ -832,6 +928,7 @@
       }
     });
   };
+
   window.padamMengikutTarikhCustom = async function(elementId) {
     let t = document.getElementById(elementId).value;
     if (!t) {
@@ -840,6 +937,7 @@
     }
     jalankanPadamTarikh(t);
   };
+
   async function jalankanPadamTarikh(tarikhStr) {
     Swal.fire({
       title: `Padam Tarikh ${tarikhStr.split('-').reverse().join('/')}?`,
@@ -869,6 +967,7 @@
       }
     });
   }
+
   window.padamSemuaRekod = async function() {
     Swal.fire({
       title: 'AMARAN: Padam SEMUA Rekod?',
@@ -893,6 +992,7 @@
       }
     });
   };
+
   window.cetakPdfTidakKuliah = async function() {
     await muatMaklumatGuru();
     const records = allCachedRecords.filter(r => r.status === 'Tidak Kuliah');
