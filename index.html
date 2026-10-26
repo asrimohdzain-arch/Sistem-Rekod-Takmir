@@ -40,6 +40,7 @@
     .swal2-icon { width: 36px !important; height: 36px !important; margin: 0.4rem auto !important; }
     .swal2-styled { padding: 6px 16px !important; font-size: 0.75rem !important; border-radius: 30px !important; }
 
+    /* Layout Utama Desktop vs Mobile */
     .app-container { 
       width: 100% !important; 
       max-width: 100% !important; 
@@ -47,24 +48,120 @@
       min-height: 100vh;
       background: var(--bg-light); 
       position: relative; 
-      padding: 12px;
-      padding-bottom: 70px; 
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
     }
 
-    /* Kad Header Gaya Dark Navy */
+    @media (min-width: 992px) {
+      .app-container {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        grid-template-rows: auto 1fr;
+        gap: 16px;
+        padding: 16px;
+        max-width: 1600px !important;
+        margin: 0 auto;
+      }
+      .desktop-sidebar {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        display: flex !important;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .hero-header {
+        grid-column: 2;
+        grid-row: 1;
+        margin-bottom: 0 !important;
+      }
+      .main-content-area {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      .bottom-nav {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .desktop-sidebar {
+        display: none !important;
+      }
+      .app-container {
+        padding-bottom: 70px;
+      }
+    }
+
+    /* Sidebar Kiri Komputer Gaya Rujukan */
+    .sidebar-brand-box {
+      background: var(--navy-card);
+      color: white;
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+    }
+    .sidebar-brand-title {
+      font-size: 11pt;
+      font-weight: 800;
+      line-height: 1.3;
+      margin: 0 0 4px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+    .sidebar-brand-sub {
+      font-size: 7.5pt;
+      color: #94a3b8;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .sidebar-nav-box {
+      background: var(--card-white);
+      border-radius: 16px;
+      padding: 8px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-nav-btn {
+      background: transparent;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-dark);
+      font-size: 9pt;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+    .sidebar-nav-btn i { font-size: 11pt; width: 20px; text-align: center; }
+    .sidebar-nav-btn.active {
+      background: var(--navy-card);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
+    }
+
+    /* Kad Header Atas (Desktop & Mobile) */
     .hero-header {
       background: var(--navy-card);
       color: white;
-      padding: 20px 16px;
+      padding: 24px 20px;
       border-radius: 20px;
       position: relative;
       box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
     }
-    .hero-title { font-size: 15pt; font-weight: 800; margin: 0 0 2px 0; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.5px; color: #ffffff !important; }
-    .hero-subtitle { font-size: 8.5pt; color: #94a3b8; font-weight: 500; margin-bottom: 12px; }
+    .hero-title { font-size: 16pt; font-weight: 800; margin: 0 0 4px 0; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.5px; color: #ffffff !important; }
+    .hero-subtitle { font-size: 9pt; color: #94a3b8; font-weight: 500; margin-bottom: 14px; }
     
     .header-date-badge {
       display: inline-flex;
@@ -78,37 +175,36 @@
       font-weight: 600;
     }
 
-    /* Navigasi Butang Melengkung Kad */
-    .top-nav-card {
+    /* Navigasi Mudah Alih (Mobile Bottom Nav) */
+    .top-nav-card-mobile {
       background: var(--card-white);
-      border-radius: 20px;
+      border-radius: 16px;
       padding: 6px;
       display: flex;
       justify-content: space-around;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       border: 1px solid var(--border-color);
+      margin-bottom: 12px;
     }
     .nav-pill-btn {
       flex: 1;
       border: none;
       background: transparent;
-      padding: 10px 4px;
-      border-radius: 14px;
+      padding: 8px 4px;
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       color: var(--text-dark);
-      font-size: 8pt;
+      font-size: 7.5pt;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
-    .nav-pill-btn i { font-size: 13pt; }
+    .nav-pill-btn i { font-size: 12pt; }
     .nav-pill-btn.active {
       background: var(--navy-card);
       color: #ffffff;
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
     }
 
     /* Butang Utama Oval Melengkung Penuh */
@@ -117,7 +213,7 @@
       color: #ffffff !important;
       border: none !important;
       border-radius: 30px !important;
-      padding: 10px 16px !important;
+      padding: 10px 18px !important;
       font-weight: 700 !important;
       font-size: 9pt !important;
       width: 100%;
@@ -133,7 +229,7 @@
       transform: translateY(-1px);
     }
 
-    /* Kad Ringkasan / Stat & Kotak Kandungan */
+    /* Statistik & Kotak Kandungan */
     .stat-card-row {
       display: flex;
       flex-direction: column;
@@ -142,10 +238,9 @@
     .info-card {
       background: var(--card-white);
       border-radius: 18px;
-      padding: 14px 16px;
+      padding: 14px 18px;
       border: 1px solid var(--border-color);
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      position: relative;
       border-left: 4px solid var(--navy-card);
     }
     .info-card-label {
@@ -176,19 +271,14 @@
     .stat-card-mini h3 { font-size: 13pt; font-weight: 800; color: var(--navy-card); margin: 0; }
     .stat-card-mini p { font-size: 7pt; color: var(--text-muted); margin: 2px 0 0 0; font-weight: 600; }
 
-    /* Pengaturan Kotak Kandungan agar tidak terlalu lebar/kecil di komputer */
     .content-box {
       background: var(--card-white);
       border-radius: 20px;
-      padding: 18px 24px;
+      padding: 20px 24px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.04);
       border: 1px solid var(--border-color);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      max-width: 800px;
       width: 100%;
+      max-width: 850px;
       margin: 0 auto;
     }
 
@@ -197,11 +287,11 @@
       border: 1px solid var(--border-color);
       border-left: 4px solid var(--navy-card);
       border-radius: 18px;
-      padding: 12px 14px;
+      padding: 12px 16px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      height: 120px;
-      min-height: 120px;
-      max-height: 120px;
+      height: 125px;
+      min-height: 125px;
+      max-height: 125px;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
@@ -224,40 +314,16 @@
     }
 
     .section-header-title {
-      font-size: 10pt;
+      font-size: 10.5pt;
       font-weight: 800;
       color: var(--navy-card);
-      margin: 4px 0 8px 0;
+      margin: 4px 0 10px 0;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .menu-card {
-      background: var(--card-white);
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .menu-card:hover { border-color: var(--navy-card); transform: translateY(-2px); }
-    .menu-icon {
-      width: 28px; height: 28px; border-radius: 10px;
-      background: #f1f5f9; color: var(--navy-card);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 9pt; margin-bottom: 6px;
-    }
-    .menu-card h5 { font-size: 9.5pt; font-weight: 700; margin: 0 0 2px 0; color: var(--navy-card); }
-    .menu-card p { font-size: 7.5pt; color: var(--text-muted); margin: 0; }
-
-    #rekodForm { display: flex; flex-direction: column; flex: 1; }
-    .form-content-wrap { flex: 1; }
+    #rekodForm { display: flex; flex-direction: column; }
     .label-custom { font-weight: 700; font-size: 9pt; margin-top: 10px; margin-bottom: 5px; display: flex; align-items: center; color: var(--navy-card); }
     .label-custom i { margin-right: 6px; color: var(--navy-card); width: 14px; text-align: center; }
     .radio-group { background: #f8fafc; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 4px; }
@@ -281,8 +347,9 @@
       display: flex; justify-content: space-around; padding: 6px 0;
       border-top: 1px solid var(--border-color); z-index: 1000; height: 56px;
     }
-    .copyright { text-align: center; margin: 4px 0; font-size: 7.5pt; color: var(--text-muted); }
-    .view-section { display: none; flex: 1; flex-direction: column; height: auto; min-height: calc(100vh - 80px); }
+    .copyright { text-align: center; margin: 8px 0; font-size: 7.5pt; color: var(--text-muted); grid-column: 1 / -1; }
+    
+    .view-section { display: none; flex-direction: column; gap: 12px; width: 100%; }
     .view-section.active { display: flex; }
     
     .record-masjid-1 { background-color: #f0fdf4 !important; border-color: #bbf7d0 !important; }
@@ -290,15 +357,38 @@
     .record-masjid-3 { background-color: #fff7ed !important; border-color: #ffedd5 !important; }
     .record-tidak-kuliah { background-color: #fef2f2 !important; border-color: #fecdd3 !important; }
     .record-card { margin-bottom: 8px !important; border-radius: 14px !important; border: 1px solid var(--border-color) !important; } 
-    .record-card .card-body { padding: 8px 10px !important; font-size: 8.5pt; line-height: 1.2; } 
+    .record-card .card-body { padding: 10px 12px !important; font-size: 8.5pt; line-height: 1.2; } 
     .record-card h6 { font-size: 9.5pt; margin-top: 4px !important; font-weight: 700; } 
     .record-card .badge { font-size: 7pt; padding: 4px 8px; border-radius: 20px; } 
   </style>
 </head>
 <body>
 <div class="app-container">
-  <!-- KAD HEADER BERGAYA DARK NAVY -->
-  <div class="hero-header" style="max-width: 800px; width: 100%; margin: 0 auto;">
+
+  <!-- SIDEBAR KIRI KHUSUS UNTUK KOMPUTER (DESKTOP) -->
+  <div class="desktop-sidebar">
+    <div class="sidebar-brand-box">
+      <h2 class="sidebar-brand-title">Sistem Rekod Takmir</h2>
+      <p class="sidebar-brand-sub">Pengurusan Rekod & Laporan</p>
+    </div>
+    <div class="sidebar-nav-box">
+      <button class="sidebar-nav-btn active" id="side-btn-utama" onclick="switchTab('utama')">
+        <i class="fas fa-chart-pie"></i> Utama
+      </button>
+      <button class="sidebar-nav-btn" id="side-btn-borang" onclick="switchTab('borang')">
+        <i class="fas fa-edit"></i> Borang Rekod
+      </button>
+      <button class="sidebar-nav-btn" id="side-btn-senarai" onclick="switchTab('senarai')">
+        <i class="fas fa-list-ul"></i> Senarai Rekod
+      </button>
+      <button class="sidebar-nav-btn" id="side-btn-tetapan" onclick="switchTab('tetapan')">
+        <i class="fas fa-cog"></i> Tetapan
+      </button>
+    </div>
+  </div>
+
+  <!-- KAD HEADER ATAS -->
+  <div class="hero-header">
     <h4 class="hero-title">Sistem Rekod Takmir</h4>
     <div class="hero-subtitle">Pengurusan Rekod & Laporan Takmir</div>
     <div class="header-date-badge">
@@ -306,216 +396,233 @@
     </div>
   </div>
 
-  <!-- KAD NAVIGASI UTAMA MELENGKUNG -->
-  <div class="top-nav-card" style="max-width: 800px; width: 100%; margin: 0 auto;">
-    <button class="nav-pill-btn active" id="nav-btn-utama" onclick="switchTab('utama')">
-      <i class="fas fa-chart-pie"></i>
-      Utama
-    </button>
-    <button class="nav-pill-btn" id="nav-btn-borang" onclick="switchTab('borang')">
-      <i class="fas fa-edit"></i>
-      Borang
-    </button>
-    <button class="nav-pill-btn" id="nav-btn-senarai" onclick="switchTab('senarai')">
-      <i class="fas fa-list-ul"></i>
-      Senarai
-    </button>
-    <button class="nav-pill-btn" id="nav-btn-tetapan" onclick="switchTab('tetapan')">
-      <i class="fas fa-cog"></i>
-      Tetapan
-    </button>
-  </div>
-
-  <!-- VIEW 1: UTAMA / DASHBOARD -->
-  <div id="view-utama" class="view-section active">
-    <div style="max-width: 800px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; flex: 1;">
-      <div class="section-header-title">
-        <i class="fas fa-chart-line"></i> Analisa Rekod Takmir
-      </div>
-
-      <!-- BUTANG TAMBAH REKOD MELENGKUNG -->
-      <button class="btn-action-pill" onclick="switchTab('borang')">
-        <i class="fas fa-plus"></i> Tambah Rekod Baharu
+  <!-- KAWASAN UTAMA (MAIN CONTENT AREA) -->
+  <div class="main-content-area" style="display: flex; flex-direction: column; width: 100%;">
+    
+    <!-- Navigasi Mobile (Hanya muncul di telefon) -->
+    <div class="top-nav-card-mobile d-lg-none">
+      <button class="nav-pill-btn active" id="nav-btn-utama" onclick="switchTab('utama')">
+        <i class="fas fa-chart-pie"></i> Utama
       </button>
-
-      <!-- KAD STATISTIK UTAMA -->
-      <div class="stat-card-row">
-        <div class="info-card">
-          <div class="info-card-label">Jumlah Keseluruhan Rekod</div>
-          <div class="info-card-value" id="statJumlah">0</div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-label">Purata Kehadiran Jemaah</div>
-          <div class="info-card-value" style="font-size: 14pt;" id="statPurataJemaah">0 Jemaah / Kuliah</div>
-        </div>
-      </div>
-
-      <!-- STAT MINI 3 KOLUM -->
-      <div class="stats-grid">
-        <div class="stat-card-mini">
-          <h3 id="statJumlahMini">0</h3>
-          <p>Jumlah Kuliah</p>
-        </div>
-        <div class="stat-card-mini">
-          <h3 id="statBulanIni">0</h3>
-          <p>Bulan Ini</p>
-        </div>
-        <div class="stat-card-mini">
-          <h3 id="statMingguIni">0</h3>
-          <p>Minggu Ini</p>
-        </div>
-      </div>
-
-      <!-- KOTAK MAKLUMAN -->
-      <div class="announcement-box">
-        <div class="announcement-title">
-          <i class="fas fa-bullhorn me-1.5"></i> MAKLUMAN / PENGUMUMAN
-        </div>
-        <p class="announcement-content" id="displayMakluman">Tiada makluman terkini.</p>
-      </div>
-
-      <!-- BUTANG CETAK PDF -->
-      <button class="btn-action-pill" style="background: var(--navy-hover) !important;" onclick="cetakPdfTidakKuliah()">
-        <i class="fas fa-file-pdf"></i> Cetak PDF Tidak Kuliah
+      <button class="nav-pill-btn" id="nav-btn-borang" onclick="switchTab('borang')">
+        <i class="fas fa-edit"></i> Borang
+      </button>
+      <button class="nav-pill-btn" id="nav-btn-senarai" onclick="switchTab('senarai')">
+        <i class="fas fa-list-ul"></i> Senarai
+      </button>
+      <button class="nav-pill-btn" id="nav-btn-tetapan" onclick="switchTab('tetapan')">
+        <i class="fas fa-cog"></i> Tetapan
       </button>
     </div>
-  </div>
 
-  <!-- VIEW 2: BORANG REKOD -->
-  <div id="view-borang" class="view-section">
-    <div class="content-box">
-      <div class="d-flex align-items-center mb-3">
-        <div class="rounded-circle text-white p-2 me-2" style="background: var(--navy-card); width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;">
-          <i class="fas fa-file-signature" style="font-size: 10pt;"></i>
+    <!-- VIEW 1: UTAMA / DASHBOARD -->
+    <div id="view-utama" class="view-section active">
+      <div style="max-width: 850px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;">
+        <div class="section-header-title">
+          <i class="fas fa-chart-line"></i> Analisa Rekod Takmir
         </div>
-        <h5 class="section-title m-0" id="borangHeaderTitle" style="font-size: 12pt; font-weight: 800;">Borang Rekod Takmir</h5>
-      </div>
-      <form id="rekodForm">
-        <input type="hidden" id="editDocId" value="">
-        <input type="hidden" id="editCollectionName" value="">
-        <div class="form-content-wrap">
-          <label class="label-custom" for="tarikh"><i class="fas fa-calendar-alt"></i> Tarikh</label>
-          <input type="date" name="tarikh" id="tarikh" class="form-control date-input-centered" required>
-          
-          <label class="label-custom"><i class="fas fa-mosque"></i> Pilih Masjid / Madrasah</label>
-          <div class="radio-group">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="masjid" value="Madrasah Lubok Kawah Hilir" id="mj1" required>
-              <label class="form-check-label" for="mj1">Madrasah Lubok Kawah Hilir</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="masjid" value="Masjid Pondok" id="mj2">
-              <label class="form-check-label" for="mj2">Masjid Pondok</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="masjid" value="Masjid Hj Yaakob" id="mj3">
-              <label class="form-check-label" for="mj3">Masjid Hj Yaakob</label>
-            </div>
-          </div>
-          <label class="label-custom"><i class="fas fa-chalkboard-teacher"></i> Status Kuliah</label>
-          <div class="radio-group">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="status" value="Kuliah" id="st1" onclick="tunjukkanBahagian()">
-              <label class="form-check-label" for="st1">Kuliah</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="status" value="Tidak Kuliah" id="st2" onclick="tunjukkanBahagian()">
-              <label class="form-check-label" for="st2">Tidak Kuliah (Borang Tunjuk Sebab)</label>
-            </div>
-          </div>
-          <div id="kuliahArea">
-            <label class="label-custom" for="bilJemaah"><i class="fas fa-users"></i> Bilangan Jemaah</label>
-            <input type="number" name="bilJemaah" id="bilJemaah" class="form-control bg-white" placeholder="Masukkan jumlah">
-            
-            <label class="label-custom" for="catatan"><i class="fas fa-comment-dots"></i> Catatan / Aktiviti</label>
-            <textarea name="catatan" id="catatan" class="form-control bg-white" rows="3" placeholder="Sila catat maklumat kuliah..."></textarea>
-          </div>
-          <div id="sebabArea">
-            <label class="label-custom" for="sebab"><i class="fas fa-exclamation-triangle"></i> Sebab Tidak Hadir / Kuliah Batal</label>
-            <textarea name="sebab" id="sebab" class="form-control bg-white" rows="3" placeholder="Sila nyatakan sebab..."></textarea>
-          </div>
-        </div>
-        <div class="d-flex gap-2 mt-4 mb-2">
-          <button type="button" class="btn-action-pill m-0" id="submitBtn" onclick="hantarBorang()">
-            <i class="fas fa-save me-1"></i> SIMPAN REKOD
-          </button>
-          <button type="button" class="btn btn-secondary fw-bold py-2 px-4" id="batalEditBtn" style="display: none; font-size: 9pt; border-radius: 30px;" onclick="batalModKemaskini()">
-            Batal
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
 
-  <!-- VIEW 3: SENARAI & PENGURUSAN -->
-  <div id="view-senarai" class="view-section">
-    <div class="content-box">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-          <h5 class="section-title m-0" style="font-weight: 800; font-size: 11pt;">Senarai Rekod Kuliah</h5>
-          <p class="section-subtitle m-0 text-muted" id="jumlahRekodLabel">Memuatkan senarai...</p>
-        </div>
-        <button class="btn btn-sm btn-action-pill py-1.5 px-3" style="width: auto; font-size: 8.5pt;" onclick="muatSenaraiRekod()"><i class="fas fa-sync-alt me-1"></i> Segar</button>
-      </div>
-      <!-- Search Bar -->
-      <div class="input-group mb-3">
-        <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px;"><i class="fas fa-search text-muted"></i></span>
-        <input type="text" id="searchInput" class="form-control border-start-0" style="border-radius: 0 12px 12px 0;" placeholder="Cari hari, tarikh, masjid..." oninput="tapisSenarai()">
-      </div>
-      <div id="senaraiContainer" style="flex: 1; overflow-y: auto;">
-        <div class="text-center text-muted py-3">
-          <i class="fas fa-spinner fa-spin fa-2x"></i>
-          <p class="mt-1 small">Memuatkan senarai...</p>
-        </div>
-      </div>
-    </div>
-  </div>
+        <!-- BUTANG TAMBAH REKOD MELENGKUNG -->
+        <button class="btn-action-pill" onclick="switchTab('borang')">
+          <i class="fas fa-plus"></i> Tambah Rekod Baharu
+        </button>
 
-  <!-- VIEW 4: TETAPAN -->
-  <div id="view-tetapan" class="view-section">
-    <div class="content-box">
-      <h5 class="section-title mb-1" style="font-weight: 800; font-size: 11pt;"><i class="fas fa-bullhorn me-1 text-primary"></i> Kemaskini Kotak Makluman</h5>
-      <p class="section-subtitle text-muted">Tulis makluman atau pengumuman yang akan dipaparkan di Halaman Utama</p>
-      <div class="mb-4">
-        <label class="form-label fw-bold small text-muted" for="inputMakluman">Teks Makluman</label>
-        <textarea id="inputMakluman" class="form-control" rows="3" placeholder="Contoh: Seminar Takmir akan diadakan pada..."></textarea>
-        <button class="btn-action-pill mt-2" onclick="simpanMakluman()">
-          <i class="fas fa-save me-1"></i> SIMPAN MAKLUMAN
+        <!-- KAD STATISTIK UTAMA -->
+        <div class="stat-card-row">
+          <div class="info-card">
+            <div class="info-card-label">Jumlah Keseluruhan Rekod</div>
+            <div class="info-card-value" id="statJumlah">0</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Purata Kehadiran Jemaah</div>
+            <div class="info-card-value" style="font-size: 15pt;" id="statPurataJemaah">0 Jemaah / Kuliah</div>
+          </div>
+        </div>
+
+        <!-- STAT MINI 3 KOLUM -->
+        <div class="stats-grid">
+          <div class="stat-card-mini">
+            <h3 id="statJumlahMini">0</h3>
+            <p>Jumlah Kuliah</p>
+          </div>
+          <div class="stat-card-mini">
+            <h3 id="statBulanIni">0</h3>
+            <p>Bulan Ini</p>
+          </div>
+          <div class="stat-card-mini">
+            <h3 id="statMingguIni">0</h3>
+            <p>Minggu Ini</p>
+          </div>
+        </div>
+
+        <!-- KOTAK MAKLUMAN -->
+        <div class="announcement-box">
+          <div class="announcement-title">
+            <i class="fas fa-bullhorn me-1.5"></i> MAKLUMAN / PENGUMUMAN
+          </div>
+          <p class="announcement-content" id="displayMakluman">Tiada makluman terkini.</p>
+        </div>
+
+        <!-- BUTANG CETAK PDF -->
+        <button class="btn-action-pill" style="background: var(--navy-hover) !important;" onclick="cetakPdfTidakKuliah()">
+          <i class="fas fa-file-pdf"></i> Cetak PDF Tidak Kuliah
         </button>
       </div>
-      <h5 class="section-title mb-1" style="font-weight: 800; font-size: 11pt;"><i class="fas fa-user-tie me-1 text-primary"></i> Maklumat Guru Takmir</h5>
-      <p class="section-subtitle text-muted">Maklumat ini akan digunakan dalam Cetak PDF Tidak Kuliah</p>
-      <div class="row g-2 mb-4">
-        <div class="col-12">
-          <label class="form-label fw-bold small text-muted" for="inputNamaGuru">Nama</label>
-          <input type="text" id="inputNamaGuru" class="form-control">
+    </div>
+
+    <!-- VIEW 2: BORANG REKOD -->
+    <div id="view-borang" class="view-section">
+      <div class="content-box">
+        <div class="d-flex align-items-center mb-3">
+          <div class="rounded-circle text-white p-2 me-2" style="background: var(--navy-card); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-file-signature" style="font-size: 10pt;"></i>
+          </div>
+          <h5 class="section-title m-0" id="borangHeaderTitle" style="font-size: 12pt; font-weight: 800;">Borang Rekod Takmir</h5>
         </div>
-        <div class="col-md-6"><label class="form-label fw-bold small text-muted" for="inputNoKpGuru">No. KP</label><input type="text" id="inputNoKpGuru" class="form-control"></div>
-        <div class="col-md-6"><label class="form-label fw-bold small text-muted" for="inputNoHpGuru">No. HP</label><input type="text" id="inputNoHpGuru" class="form-control"></div>
-        <div class="col-md-6"><label class="form-label fw-bold small text-muted" for="inputJajahanGuru">Jajahan</label><input type="text" id="inputJajahanGuru" class="form-control"></div>
-        <div class="col-md-6"><label class="form-label fw-bold small text-muted" for="inputPekerjaanGuru">Pekerjaan</label><input type="text" id="inputPekerjaanGuru" class="form-control"></div>
-        <div class="col-12">
-          <button class="btn-action-pill mt-2" onclick="simpanMaklumatGuru()"><i class="fas fa-save me-1"></i> SIMPAN MAKLUMAT GURU</button>
-        </div>
-      </div>
-      <hr class="my-3 text-muted">
-      <h5 class="section-title mb-1" style="font-weight: 800; font-size: 11pt;"><i class="fas fa-tools me-1 text-danger"></i> Pengurusan & Hapus Rekod</h5>
-      <p class="section-subtitle text-muted">Urus pemadaman data pangkalan data</p>
-      <div class="mb-3">
-        <label class="form-label fw-bold small text-muted">Pilih Tarikh untuk Padam</label>
-        <div class="input-group">
-          <input type="date" id="tarikhHapus2" class="form-control date-input-centered">
-          <button class="btn btn-outline-danger fw-bold px-3" style="border-radius: 0 12px 12px 0;" onclick="padamMengikutTarikhCustom('tarikhHapus2')"><i class="fas fa-calendar-times me-1"></i> Padam Tarikh</button>
-        </div>
-      </div>
-      <div class="d-grid mt-auto pt-2">
-        <button class="btn btn-danger fw-bold py-2.5" style="font-size: 9pt; border-radius: 30px;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
+        <form id="rekodForm">
+          <input type="hidden" id="editDocId" value="">
+          <input type="hidden" id="editCollectionName" value="">
+          <div class="form-content-wrap">
+            <label class="label-custom" for="tarikh"><i class="fas fa-calendar-alt"></i> Tarikh</label>
+            <input type="date" name="tarikh" id="tarikh" class="form-control date-input-centered" required>
+            
+            <label class="label-custom"><i class="fas fa-mosque"></i> Pilih Masjid / Madrasah</label>
+            <div class="radio-group">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="masjid" value="Madrasah Lubok Kawah Hilir" id="mj1" required>
+                <label class="form-check-label" for="mj1">Madrasah Lubok Kawah Hilir</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="masjid" value="Masjid Pondok" id="mj2">
+                <label class="form-check-label" for="mj2">Masjid Pondok</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="masjid" value="Masjid Hj Yaakob" id="mj3">
+                <label class="form-check-label" for="mj3">Masjid Hj Yaakob</label>
+              </div>
+            </div>
+            <label class="label-custom"><i class="fas fa-chalkboard-teacher"></i> Status Kuliah</label>
+            <div class="radio-group">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="status" value="Kuliah" id="st1" onclick="tunjukkanBahagian()">
+                <label class="form-check-label" for="st1">Kuliah</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="status" value="Tidak Kuliah" id="st2" onclick="tunjukkanBahagian()">
+                <label class="form-check-label" for="st2">Tidak Kuliah (Borang Tunjuk Sebab)</label>
+              </div>
+            </div>
+            <div id="kuliahArea">
+              <label class="label-custom" for="bilJemaah"><i class="fas fa-users"></i> Bilangan Jemaah</label>
+              <input type="number" name="bilJemaah" id="bilJemaah" class="form-control bg-white" placeholder="Masukkan jumlah">
+              
+              <label class="label-custom" for="catatan"><i class="fas fa-comment-dots"></i> Catatan / Aktiviti</label>
+              <textarea name="catatan" id="catatan" class="form-control bg-white" rows="3" placeholder="Sila catat maklumat kuliah..."></textarea>
+            </div>
+            <div id="sebabArea">
+              <label class="label-custom" for="sebab"><i class="fas fa-exclamation-triangle"></i> Sebab Tidak Hadir / Kuliah Batal</label>
+              <textarea name="sebab" id="sebab" class="form-control bg-white" rows="3" placeholder="Sila nyatakan sebab..."></textarea>
+            </div>
+          </div>
+          <div class="d-flex gap-2 mt-4 mb-2">
+            <button type="button" class="btn-action-pill m-0" id="submitBtn" onclick="hantarBorang()">
+              <i class="fas fa-save me-1"></i> SIMPAN REKOD
+            </button>
+            <button type="button" class="btn btn-secondary fw-bold py-2 px-4" id="batalEditBtn" style="display: none; font-size: 9pt; border-radius: 30px;" onclick="batalModKemaskini()">
+              Batal
+            </button>
+          </div>
+        </form>
       </div>
     </div>
+
+    <!-- VIEW 3: SENARAI & PENGURUSAN -->
+    <div id="view-senarai" class="view-section">
+      <div class="content-box">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h5 class="section-title m-0" style="font-weight: 800; font-size: 11pt;">Senarai Rekod Kuliah</h5>
+            <p class="section-subtitle m-0 text-muted" id="jumlahRekodLabel">Memuatkan senarai...</p>
+          </div>
+          <button class="btn btn-sm btn-action-pill py-1.5 px-3" style="width: auto; font-size: 8.5pt;" onclick="muatSenaraiRekod()"><i class="fas fa-sync-alt me-1"></i> Segar</button>
+        </div>
+        <!-- Search Bar -->
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px;"><i class="fas fa-search text-muted"></i></span>
+          <input type="text" id="searchInput" class="form-control border-start-0" style="border-radius: 0 12px 12px 0;" placeholder="Cari hari, tarikh, masjid..." oninput="tapisSenarai()">
+        </div>
+        <div id="senaraiContainer" style="max-height: 60vh; overflow-y: auto;">
+          <div class="text-center text-muted py-3">
+            <i class="fas fa-spinner fa-spin fa-2x"></i>
+            <p class="mt-1 small">Memuatkan senarai...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: TETAPAN -->
+    <div id="view-tetapan" class="view-section">
+      <div class="content-box">
+        <h5 class="section-title mb-1" style="font-weight: 800; font-size: 11pt;"><i class="fas fa-bullhorn me-1 text-primary"></i> Kemaskini Kotak Makluman</h5>
+        <p class="section-subtitle text-muted">Tulis makluman atau pengumuman yang akan dipaparkan di Halaman Utama</p>
+        <div class="mb-4">
+          <label class="form-label fw-bold small text-muted" for="inputMakluman">Teks Makluman</label>
+          <textarea id="inputMakluman" class="form-control" rows="3" placeholder="Contoh: Seminar Takmir akan diadakan pada..."></textarea>
+          <button class="btn-action-pill mt-2" onclick="simpanMakluman()">
+            <i class="fas fa-save me-1"></i> SIMPAN MAKLUMAN
+          </button>
+        </div>
+        <h5 class="section-title mb-1" style="font-weight: 800; font-size: 11pt;"><i class="fas fa-user-tie me-1 text-primary"></i> Maklumat Guru Takmir</h5>
+        <p class="section-subtitle text-muted">Maklumat ini akan digunakan dalam Cetak PDF Tidak Kuliah</p>
+        <div class="row g-2 mb-4">
+          <div class="col-12">
+            <label class="form-label fw-bold small text-muted" for="inputNamaGuru">Nama</label>
+            <input type="text" id="inputNamaGuru" class="form-control">
+          </div>
+          <div class="col-md-6"><label class="form-label fw-bold small text-muted" for="inputNoKpGuru">No. KP</label><input type="text" id="inputNoKpGuru" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-bold small text-muted" for="inputNoHpGuru">No. HP</label><input type="text" id="inputNoHpGuru" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-bold small text-muted" for="inputJajahanGuru">Jajahan</label><input type="text" id="inputJajahanGuru" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-bold small text-muted" for="inputPekerjaanGuru">Pekerjaan</label><input type="text" id="inputPekerjaanGuru" class="form-control"></div>
+          <div class="col-12">
+            <button class="btn-action-pill mt-2" onclick="simpanMaklumatGuru()"><i class="fas fa-save me-1"></i> SIMPAN MAKLUMAT GURU</button>
+          </div>
+        </div>
+        <hr class="my-3 text-muted">
+        <h5 class="section-title mb-1" style="font-weight: 800; font-size: 11pt;"><i class="fas fa-tools me-1 text-danger"></i> Pengurusan & Hapus Rekod</h5>
+        <p class="section-subtitle text-muted">Urus pemadaman data pangkalan data</p>
+        <div class="mb-3">
+          <label class="form-label fw-bold small text-muted">Pilih Tarikh untuk Padam</label>
+          <div class="input-group">
+            <input type="date" id="tarikhHapus2" class="form-control date-input-centered">
+            <button class="btn btn-outline-danger fw-bold px-3" style="border-radius: 0 12px 12px 0;" onclick="padamMengikutTarikhCustom('tarikhHapus2')"><i class="fas fa-calendar-times me-1"></i> Padam Tarikh</button>
+          </div>
+        </div>
+        <div class="d-grid mt-auto pt-2">
+          <button class="btn btn-danger fw-bold py-2.5" style="font-size: 9pt; border-radius: 30px;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="copyright">
     Copyright &copy; 2026 | Asri Mohd Zain
+  </div>
+
+  <!-- Bottom Nav untuk Telefon Bimbit -->
+  <div class="bottom-nav d-lg-none">
+    <button class="nav-pill-btn active" id="nav-btn-utama-m" onclick="switchTab('utama')">
+      <i class="fas fa-home"></i> Utama
+    </button>
+    <button class="nav-pill-btn" id="nav-btn-borang-m" onclick="switchTab('borang')">
+      <i class="fas fa-edit"></i> Borang
+    </button>
+    <button class="nav-pill-btn" id="nav-btn-senarai-m" onclick="switchTab('senarai')">
+      <i class="fas fa-list-ul"></i> Senarai
+    </button>
+    <button class="nav-pill-btn" id="nav-btn-tetapan-m" onclick="switchTab('tetapan')">
+      <i class="fas fa-cog"></i> Tetapan
+    </button>
   </div>
 </div>
 
@@ -648,10 +755,20 @@
     currentActiveTab = tabName;
     
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.sidebar-nav-btn').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-pill-btn').forEach(el => el.classList.remove('active'));
+
     document.getElementById('view-' + tabName).classList.add('active');
+    
+    const sideBtn = document.getElementById('side-btn-' + tabName);
+    if(sideBtn) sideBtn.classList.add('active');
+
     const navBtn = document.getElementById('nav-btn-' + tabName);
     if(navBtn) navBtn.classList.add('active');
+
+    const navBtnM = document.getElementById('nav-btn-' + tabName + '-m');
+    if(navBtnM) navBtnM.classList.add('active');
+
     window.scrollTo(0,0);
     if (pushState) { 
       if (tabName !== 'utama' && previousTab === 'utama') { 
