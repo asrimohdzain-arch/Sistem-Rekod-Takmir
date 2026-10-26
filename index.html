@@ -31,7 +31,7 @@
       color: #1f2937;
       font-size: 9.5pt;
       width: 100vw;
-      overflow: hidden;
+      overflow-x: hidden;
     }
     
     .swal2-popup { width: 250px !important; padding: 0.6rem !important; font-size: 0.72rem !important; border-radius: 10px !important; }
@@ -42,20 +42,28 @@
     .swal2-actions { margin-top: 0.5rem !important; }
     .swal2-styled { padding: 4px 12px !important; font-size: 0.72rem !important; border-radius: 5px !important; }
     .swal2-input { font-size: 0.75rem !important; height: 32px !important; margin: 0.3rem auto !important; }
-
+    
+    /* Kemaskini Skrin Komputer & Telefon Penuh */
     .app-container { 
       width: 100% !important; 
       max-width: 100% !important; 
-      margin: 0; 
-      height: 100dvh;
-      min-height: 100vh;
+      margin: 0 auto; 
+      height: 100vh;
+      max-height: 100vh;
       overflow: hidden;
       background: #f8fafc; 
       position: relative; 
-      padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); 
-      box-shadow: none; 
+      padding-bottom: 50px; 
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
       display: flex;
       flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .app-container {
+        max-width: 100% !important;
+        border-radius: 0;
+      }
     }
 
     .hero-header {
@@ -68,7 +76,6 @@
       margin-bottom: 6px;
     }
     .hero-title { font-size: 12.5pt; font-weight: 700; margin: 0; line-height: 1.1; text-align: center; color: #ffffff !important; }
-
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0 10px; margin-bottom: 6px; }
     .stat-card {
       background: var(--green-bg);
@@ -80,10 +87,8 @@
     }
     .stat-card h3 { font-size: 11pt; font-weight: 700; color: var(--green-text); margin: 0; }
     .stat-card p { font-size: 7pt; color: var(--green-subtext); margin: 1px 0 0 0; font-weight: 500; }
-
     .section-title { font-size: 9.5pt; font-weight: 700; color: #111827; margin: 0 0 1px 0; }
     .section-subtitle { font-size: 7pt; color: #6b7280; margin: 0 0 4px 0; }
-
     .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 0 10px; margin-bottom: 6px; }
     .menu-card {
       background: var(--green-bg);
@@ -106,7 +111,6 @@
     }
     .menu-card h5 { font-size: 9pt; font-weight: 700; margin: 0 0 1px 0; color: #1f2937; }
     .menu-card p { font-size: 7pt; color: var(--green-subtext); margin: 0; }
-
     .content-box {
       background: var(--green-bg);
       border-radius: 10px;
@@ -119,57 +123,48 @@
       flex-direction: column;
       overflow-y: auto;
     }
-
     #rekodForm {
       display: flex;
       flex-direction: column;
       flex: 1;
     }
-
     .form-content-wrap {
       flex: 1;
     }
-
     .label-custom { font-weight: 600; font-size: 8.5pt; margin-top: 6px; margin-bottom: 3px; display: flex; align-items: center; color: #374151; }
     .label-custom i { margin-right: 5px; color: var(--primary); width: 12px; text-align: center; }
     .radio-group { background: #ffffff; padding: 6px 8px; border: 1px solid #e5e7eb; border-radius: 6px; margin-bottom: 3px; }
     .form-check { margin-bottom: 4px; }
     .form-check:last-child { margin-bottom: 0; }
     .form-check-label { cursor: pointer; font-size: 8.5pt; font-weight: 500; }
-
     .btn-custom-blue {
       background-color: var(--btn-dark-blue) !important;
       color: white !important; border: none !important;
       font-weight: 600; border-radius: 6px; padding: 6px; font-size: 8.5pt;
     }
     .btn-custom-blue:hover { background-color: var(--btn-dark-blue-hover) !important; }
-
     .btn-submit-design {
       background: var(--primary) !important; color: white !important;
       width: 100%; padding: 9px; border-radius: 6px; font-weight: 600;
       margin-top: auto; border: none !important; font-size: 9pt;
     }
     .btn-submit-design:hover { background: var(--primary-hover) !important; }
-
     #kuliahArea { background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 8px; margin-top: 6px; }
     #sebabArea { background-color: #fff1f2; border: 1px solid #fecdd3; border-radius: 6px; padding: 8px; margin-top: 6px; display: none; }
-
     .date-input-centered { text-align: center; text-align-last: center; display: flex; align-items: center; justify-content: center; height: 32px; font-size: 8.5pt; }
-
     .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0; width: 100%; background: white;
-      display: flex; justify-content: space-around; align-items: center; padding: 5px 0 calc(5px + env(safe-area-inset-bottom, 0px));
-      border-top: 1px solid #e5e7eb; z-index: 9999; min-height: 50px; box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+      position: absolute; bottom: 0; left: 0; width: 100%; background: white;
+      display: flex; justify-content: space-around; padding: 5px 0;
+      border-top: 1px solid #e5e7eb; z-index: 1000; height: 50px;
     }
     .nav-item-btn {
       background: none; border: none; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; color: #9ca3af; font-size: 7pt; font-weight: 600; cursor: pointer; padding: 2px 6px; min-width: 64px; min-height: 42px;
+      align-items: center; color: #9ca3af; font-size: 7pt; font-weight: 600; cursor: pointer; padding: 1px 6px;
     }
     .nav-item-btn i { font-size: 10pt; margin-bottom: 1px; }
     .nav-item-btn.active { color: var(--primary); }
-
     .copyright { text-align: center; margin: 2px 0 4px 0; font-size: 7pt; color: #9ca3af; }
-    .view-section { display: none; flex: 1; flex-direction: column; min-height: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+    .view-section { display: none; flex: 1; flex-direction: column; height: calc(100vh - 50px); overflow-y: auto; }
     .view-section.active { display: flex; }
     
     /* Announcement Box Style - Slightly increased height */
@@ -204,7 +199,6 @@
       word-break: break-word;
       flex: 1;
     }
-
     .export-only-wrap { margin: 0 10px 4px; }
     .record-masjid-1 { background-color: #ecfdf5 !important; border-color: #86efac !important; }
     .record-masjid-2 { background-color: #eff6ff !important; border-color: #93c5fd !important; }
@@ -232,7 +226,6 @@
         </div>
       </div>
     </div>
-
     <!-- Summary Stats -->
     <div class="stats-grid">
       <div class="stat-card">
@@ -248,7 +241,6 @@
         <p>Minggu Ini</p>
       </div>
     </div>
-
     <!-- Purata Kehadiran Jemaah -->
     <div class="content-box py-1.5 mb-1.5" style="flex: initial;">
       <div class="d-flex justify-content-between align-items-center">
@@ -261,7 +253,6 @@
         </div>
       </div>
     </div>
-
     <!-- Kotak Makluman / Pengumuman Penuh Skrin -->
     <div class="announcement-box">
       <div class="announcement-title">
@@ -269,12 +260,10 @@
       </div>
       <p class="announcement-content" id="displayMakluman">Tiada makluman terkini.</p>
     </div>
-
     <!-- Menu Utama -->
     <div style="padding: 0 10px;">
       <h5 class="section-title">Menu Utama</h5>
     </div>
-
     <div class="menu-grid">
       <div class="menu-card" onclick="switchTab('borang')">
         <div class="menu-icon"><i class="fas fa-edit"></i></div>
@@ -287,13 +276,11 @@
         <p>Lihat semua rekod</p>
       </div>
     </div>
-
     <!-- Export PDF Button -->
     <div class="export-only-wrap">
       <button class="btn btn-sm btn-custom-blue w-100 fw-bold py-1.5 m-0" style="font-size: 8pt;" onclick="cetakPdfTidakKuliah()"><i class="fas fa-file-pdf me-1"></i> Cetak PdF Tidak Kuliah</button>
     </div>
   </div>
-
   <!-- VIEW 2: BORANG REKOD -->
   <div id="view-borang" class="view-section">
     <div class="content-box">
@@ -306,7 +293,6 @@
       <form id="rekodForm">
         <input type="hidden" id="editDocId" value="">
         <input type="hidden" id="editCollectionName" value="">
-
         <div class="form-content-wrap">
           <label class="label-custom" for="tarikh"><i class="fas fa-calendar-alt"></i> Tarikh</label>
           <input type="date" name="tarikh" id="tarikh" class="form-control form-control-sm date-input-centered" required>
@@ -326,7 +312,6 @@
               <label class="form-check-label" for="mj3">Masjid Hj Yaakob</label>
             </div>
           </div>
-
           <label class="label-custom"><i class="fas fa-chalkboard-teacher"></i> Status Kuliah</label>
           <div class="radio-group">
             <div class="form-check">
@@ -338,7 +323,6 @@
               <label class="form-check-label" for="st2">Tidak Kuliah (Borang Tunjuk Sebab)</label>
             </div>
           </div>
-
           <div id="kuliahArea">
             <label class="label-custom" for="bilJemaah"><i class="fas fa-users"></i> Bilangan Jemaah</label>
             <input type="number" name="bilJemaah" id="bilJemaah" class="form-control form-control-sm bg-white" style="font-size: 8.5pt;" placeholder="Masukkan jumlah">
@@ -346,13 +330,11 @@
             <label class="label-custom" for="catatan"><i class="fas fa-comment-dots"></i> Catatan / Aktiviti</label>
             <textarea name="catatan" id="catatan" class="form-control form-control-sm bg-white" style="font-size: 8.5pt;" rows="2" placeholder="Sila catat maklumat kuliah..."></textarea>
           </div>
-
           <div id="sebabArea">
             <label class="label-custom" for="sebab"><i class="fas fa-exclamation-triangle"></i> Sebab Tidak Hadir / Kuliah Batal</label>
             <textarea name="sebab" id="sebab" class="form-control form-control-sm bg-white" style="font-size: 8.5pt;" rows="2" placeholder="Sila nyatakan sebab..."></textarea>
           </div>
         </div>
-
         <div class="d-flex gap-2 mt-3 mb-1">
           <button type="button" class="btn-submit-design m-0" id="submitBtn" onclick="hantarBorang()">
             <i class="fas fa-save me-1"></i> SIMPAN REKOD
@@ -364,7 +346,6 @@
       </form>
     </div>
   </div>
-
   <!-- VIEW 3: SENARAI & PENGURUSAN -->
   <div id="view-senarai" class="view-section">
     <div class="content-box" style="background-color: #fefce8; border-color: #fde047;">
@@ -375,13 +356,11 @@
         </div>
         <button class="btn btn-sm btn-custom-blue py-1 px-2" style="font-size: 8.5pt;" onclick="muatSenaraiRekod()"><i class="fas fa-sync-alt"></i> Segar</button>
       </div>
-
       <!-- Search Bar -->
       <div class="input-group input-group-sm mb-2">
         <span class="input-group-text bg-white"><i class="fas fa-search text-muted" style="font-size: 8.5pt;"></i></span>
         <input type="text" id="searchInput" class="form-control border-start-0" style="font-size: 8.5pt;" placeholder="Cari hari, tarikh, masjid..." oninput="tapisSenarai()">
       </div>
-
       <div id="senaraiContainer" style="flex: 1; overflow-y: auto;">
         <div class="text-center text-muted py-3">
           <i class="fas fa-spinner fa-spin fa-2x"></i>
@@ -390,13 +369,11 @@
       </div>
     </div>
   </div>
-
   <!-- VIEW 4: TETAPAN -->
   <div id="view-tetapan" class="view-section">
     <div class="content-box">
       <h5 class="section-title mb-1"><i class="fas fa-bullhorn me-1 text-danger"></i> Kemaskini Kotak Makluman</h5>
       <p class="section-subtitle">Tulis makluman atau pengumuman yang akan dipaparkan di Halaman Utama</p>
-
       <div class="mb-3">
         <label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;" for="inputMakluman">Teks Makluman</label>
         <textarea id="inputMakluman" class="form-control form-control-sm" rows="3" style="font-size: 8.5pt;" placeholder="Contoh: Seminar Takmir akan diadakan pada..."></textarea>
@@ -404,7 +381,6 @@
           <i class="fas fa-save me-1"></i> SIMPAN MAKLUMAN
         </button>
       </div>
-
       <h5 class="section-title mb-1"><i class="fas fa-user-tie me-1 text-danger"></i> Maklumat Guru Takmir</h5>
       <p class="section-subtitle">Maklumat ini akan digunakan dalam Cetak PDF Tidak Kuliah</p>
       <div class="row g-2 mb-3">
@@ -421,25 +397,23 @@
         </div>
       </div>
       <hr class="my-3 text-muted">
-
       <h5 class="section-title mb-1"><i class="fas fa-tools me-1 text-danger"></i> Pengurusan & Hapus Rekod</h5>
       <p class="section-subtitle">Urus pemadaman data pangkalan data</p>
-
       <div class="mb-2">
         <label class="form-label fw-bold small text-muted" style="font-size: 8.5pt;">Pilih Tarikh untuk Padam</label>
-        <div class="input-group input-group-sm mb-2">
+        <div class="input-group input-group-sm">
           <input type="date" id="tarikhHapus2" class="form-control date-input-centered" style="font-size: 8.5pt;">
           <button class="btn btn-outline-danger fw-bold py-1 px-2" style="font-size: 8.5pt;" onclick="padamMengikutTarikhCustom('tarikhHapus2')"><i class="fas fa-calendar-times me-1"></i> Padam Tarikh</button>
         </div>
-        <button class="btn btn-danger fw-bold py-2 w-100" style="font-size: 8.5pt; border-radius: 8px;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
+      </div>
+      <div class="d-grid mt-auto pt-3">
+        <button class="btn btn-danger fw-bold py-2" style="font-size: 8.5pt; border-radius: 8px;" onclick="padamSemuaRekod()"><i class="fas fa-ban me-1"></i> Padam Kesemua Rekod</button>
       </div>
     </div>
   </div>
-
   <div class="copyright">
     Copyright &copy; 2026 | Asri Mohd Zain
   </div>
-
   <!-- Bottom Navigation Bar -->
   <div class="bottom-nav">
     <button class="nav-item-btn active" id="nav-btn-utama" onclick="switchTab('utama')">
@@ -460,13 +434,11 @@
     </button>
   </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
   import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
   import { getFirestore, collection, addDoc, updateDoc, getDocs, deleteDoc, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
   const firebaseConfig = {
     apiKey: "AIzaSyAwRIQis4oLeYRP_OAJDUBXOD32pwvMGfs",
     authDomain: "sistem-rekod-takmir.firebaseapp.com",
@@ -475,16 +447,13 @@
     messagingSenderId: "923971919876",
     appId: "1:923971919876:web:2739dade491afd88f2d551"
   };
-
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const auth = getAuth(app);
-
   let currentUser = null;
   let allCachedRecords = [];
   let currentActiveTab = 'utama';
-  let maklumatGuru = { nama:'', noKp:'', noHp:'', jajahan:'', pekerjaan:'' };
-
+  let maklumatGuru = { nama:'ASRI BIN MOHD ZAIN', noKp:'701117715109', noHp:'019 - 946 7894', jajahan:'Pasir Mas', pekerjaan:'GURU (Arab/Agama) YIK' };
   async function initAuth() {
     try {
       const cred = await signInAnonymously(auth);
@@ -493,18 +462,15 @@
       console.error("Auth error:", e);
     }
   }
-
   window.onload = async function() {
     await initAuth();
     var today = new Date().toISOString().split('T')[0];
     document.getElementById('tarikh').value = today;
     document.getElementById('tarikhHapus2').value = today;
-
     const partsToday = today.split('-');
     if(partsToday.length === 3) {
       document.getElementById('currentHeaderDate').innerText = `${partsToday[2]}/${partsToday[1]}/${partsToday[0]}`;
     }
-
     history.replaceState({ tab: 'utama' }, '', '');
     
     window.addEventListener('popstate', function(event) {
@@ -512,12 +478,10 @@
         switchTab('utama', false);
       }
     });
-
     await muatMakluman();
     await muatMaklumatGuru();
     await muatSenaraiRekod();
   };
-
   window.muatMakluman = async function() {
     try {
       const docRef = doc(db, "TetapanAplikasi", "maklumanUtama");
@@ -533,7 +497,6 @@
       console.error("Error loading announcement:", e);
     }
   };
-
   window.simpanMakluman = async function() {
     const teksInput = document.getElementById('inputMakluman').value.trim();
     try {
@@ -552,14 +515,13 @@
       Swal.fire('RALAT!', 'Gagal menyimpan makluman: ' + e.message, 'error');
     }
   };
-
   window.muatMaklumatGuru = async function() {
     try {
       const docRef = doc(db, 'TetapanAplikasi', 'maklumatGuruTakmir');
       const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) { maklumatGuru = docSnap.data(); } else { maklumatGuru = { nama:'', noKp:'', noHp:'', jajahan:'', pekerjaan:'' }; }
+      if (docSnap.exists()) maklumatGuru = { ...maklumatGuru, ...docSnap.data() };
     } catch (e) {
-      console.error('Error loading teacher information:', e); Swal.fire('RALAT!', 'Maklumat guru tidak dapat dimuatkan daripada Tetapan: ' + e.message, 'error');
+      console.error('Error loading teacher information:', e);
     }
     document.getElementById('inputNamaGuru').value = maklumatGuru.nama || '';
     document.getElementById('inputNoKpGuru').value = maklumatGuru.noKp || '';
@@ -567,7 +529,6 @@
     document.getElementById('inputJajahanGuru').value = maklumatGuru.jajahan || '';
     document.getElementById('inputPekerjaanGuru').value = maklumatGuru.pekerjaan || '';
   };
-
   window.simpanMaklumatGuru = async function() {
     const nama = document.getElementById('inputNamaGuru').value.trim();
     const noKp = document.getElementById('inputNoKpGuru').value.trim();
@@ -581,7 +542,7 @@
     try {
       const docRef = doc(db, 'TetapanAplikasi', 'maklumatGuruTakmir');
       await setDoc(docRef, { nama, noKp, noHp, jajahan, pekerjaan, updatedAt: serverTimestamp() });
-      await muatMaklumatGuru();
+      maklumatGuru = { nama, noKp, noHp, jajahan, pekerjaan };
       Swal.fire('BERJAYA!', 'Maklumat guru telah dikemaskini.', 'success');
     } catch (e) {
       Swal.fire('RALAT!', 'Gagal menyimpan maklumat guru: ' + e.message, 'error');
@@ -592,21 +553,16 @@
       switchTab('utama');
     }
   };
-
-  window.switchTab = async function(tabName, pushState = true) {
+  window.switchTab = function(tabName, pushState = true) {
     const previousTab = currentActiveTab;
     currentActiveTab = tabName;
     
-    if (tabName === 'tetapan') await muatMaklumatGuru();
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
-
     document.getElementById('view-' + tabName).classList.add('active');
     const navBtn = document.getElementById('nav-btn-' + tabName);
     if(navBtn) navBtn.classList.add('active');
-
     window.scrollTo(0,0);
-
     if (pushState) { 
       if (tabName !== 'utama' && previousTab === 'utama') { 
         history.pushState({ tab: tabName }, '', ''); 
@@ -617,7 +573,6 @@
       } 
     }
   };
-
   window.tunjukkanBahagian = function() {
     var statusEl = document.querySelector('input[name="status"]:checked');
     if(!statusEl) return;
@@ -625,7 +580,6 @@
     document.getElementById('kuliahArea').style.display = (status === 'Kuliah') ? 'block' : 'none';
     document.getElementById('sebabArea').style.display = (status === 'Tidak Kuliah') ? 'block' : 'none';
   };
-
   window.padamBorang = function() {
     document.getElementById('rekodForm').reset();
     document.getElementById('editDocId').value = '';
@@ -640,12 +594,10 @@
     var today = new Date().toISOString().split('T')[0];
     dateField.value = today;
   };
-
   window.batalModKemaskini = function() {
     padamBorang();
     switchTab('senarai');
   };
-
   function dapatkanNamaHari(tarikhStr) {
     if (!tarikhStr) return '';
     const parts = tarikhStr.split('-');
@@ -654,7 +606,6 @@
     const hariList = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
     return hariList[dateObj.getDay()] || '';
   }
-
   window.hantarBorang = async function() {
     var form = document.getElementById('rekodForm');
     var btn = document.getElementById('submitBtn');
@@ -665,9 +616,7 @@
       Swal.fire('RALAT!', 'Sila lengkapkan maklumat utama (Tarikh, Masjid, dan Status) sebelum simpan.', 'warning');
       return;
     }
-
     const inputTarikh = form.tarikh.value;
-
     if (!editId) {
       const tarikhBertindih = allCachedRecords.some(item => item.tarikh === inputTarikh);
       if (tarikhBertindih) {
@@ -681,10 +630,8 @@
         return;
       }
     }
-
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sedang Menyimpan...';
-
     var statusValue = form.status.value;
     var formData = {
       tarikh: inputTarikh,
@@ -692,18 +639,15 @@
       status: statusValue,
       userId: currentUser ? currentUser.uid : 'anon'
     };
-
     if (statusValue === "Kuliah") {
       formData.bilJemaah = form.bilJemaah.value ? Number(form.bilJemaah.value) : 0;
       formData.catatan = form.catatan.value || "";
     } else if (statusValue === "Tidak Kuliah") {
       formData.sebab = form.sebab.value || "";
     }
-
     try {
       var targetCollectionName = (statusValue === "Kuliah") ? "RekodKuliah" : "RekodTidakKuliah";
       const targetColPath = collection(db, targetCollectionName);
-
       if (editId) {
         if (editCol !== targetCollectionName) {
           await deleteDoc(doc(db, editCol, editId));
@@ -714,7 +658,6 @@
         }
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-save me-1"></i> SIMPAN REKOD';
-
         Swal.fire({
           title: 'BERJAYA!',
           text: 'Rekod Kuliah Berjaya Dikemaskini',
@@ -724,10 +667,8 @@
       } else {
         formData.createdAt = serverTimestamp();
         await addDoc(targetColPath, formData);
-
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-save me-1"></i> SIMPAN REKOD';
-
         Swal.fire({
           title: 'BERJAYA!',
           text: 'Alhamdulillah, Rekod Kuliah Berjaya Disimpan',
@@ -735,35 +676,28 @@
           confirmButtonColor: '#550000'
         });
       }
-
       padamBorang();
       await muatSenaraiRekod();
       switchTab('senarai');
-
     } catch (error) {
       btn.disabled = false;
       btn.innerHTML = '<i class="fas fa-save me-1"></i> SIMPAN REKOD';
       Swal.fire('RALAT SISTEM!', 'Ralat sistem tidak dijangka: ' + error.message, 'error');
     }
   };
-
   window.muatSenaraiRekod = async function() {
     const container = document.getElementById('senaraiContainer');
     container.innerHTML = '<div class="text-center text-muted py-3"><i class="fas fa-spinner fa-spin fa-2x"></i><p class="mt-1 small">Memuatkan senarai...</p></div>';
-
     try {
       const colPathKuliah = collection(db, 'RekodKuliah');
       const colPathTidak = collection(db, 'RekodTidakKuliah');
-
       const [snapKuliah, snapTidak] = await Promise.all([getDocs(colPathKuliah), getDocs(colPathTidak)]);
       
       let allRecords = [];
       snapKuliah.forEach(d => { allRecords.push({ id: d.id, collectionName: 'RekodKuliah', ...d.data() }); });
       snapTidak.forEach(d => { allRecords.push({ id: d.id, collectionName: 'RekodTidakKuliah', ...d.data() }); });
-
       allRecords.sort((a, b) => new Date(b.tarikh || 0) - new Date(a.tarikh || 0));
       allCachedRecords = allRecords;
-
       document.getElementById('statJumlah').innerText = allRecords.length;
       
       let now = new Date();
@@ -772,10 +706,8 @@
       let countWeek = 0;
       let totalJemaah = 0;
       let countKuliahWithJemaah = 0;
-
       let oneWeekAgo = new Date();
       oneWeekAgo.setDate(now.getDate() - 7);
-
       allRecords.forEach(item => {
         if(item.tarikh && item.tarikh.startsWith(currentMonth)) countMonth++;
         if(item.tarikh && new Date(item.tarikh) >= oneWeekAgo) countWeek++;
@@ -784,28 +716,23 @@
           countKuliahWithJemaah++;
         }
       });
-
       document.getElementById('statBulanIni').innerText = countMonth;
       document.getElementById('statMingguIni').innerText = countWeek;
       
       let purata = countKuliahWithJemaah > 0 ? Math.round(totalJemaah / countKuliahWithJemaah) : 0;
       document.getElementById('statPurataJemaah').innerText = `${purata} Jemaah / Kuliah`;
-
       renderSenarai(allRecords);
     } catch (error) {
       container.innerHTML = `<div class="text-center text-danger py-3 small">Gagal memuatkan senarai: ${error.message}</div>`;
     }
   };
-
   function renderSenarai(records) {
     const container = document.getElementById('senaraiContainer');
     document.getElementById('jumlahRekodLabel').innerText = `${records.length} rekod keseluruhan`;
-
     if (records.length === 0) {
       container.innerHTML = '<div class="text-center text-muted py-3 small">Tiada rekod tersimpan.</div>';
       return;
     }
-
     let html = '';
     records.forEach((item) => {
       let namaHari = dapatkanNamaHari(item.tarikh);
@@ -816,16 +743,13 @@
       else if (item.masjid === 'Madrasah Lubok Kawah Hilir') cardColorClass = 'record-masjid-1';
       else if (item.masjid === 'Masjid Pondok') cardColorClass = 'record-masjid-2';
       else if (item.masjid === 'Masjid Hj Yaakob') cardColorClass = 'record-masjid-3';
-
       let statusBadge = isKuliah 
         ? `<span class="badge bg-success">Kuliah</span>` 
         : `<span class="badge" style="background-color: #fca5a5; color: #7f1d1d;">Tidak Kuliah</span>`;
-
       let detailContent = isKuliah 
         ? `<div class="mt-1"><i class="fas fa-users text-muted me-1"></i> Jemaah: <b>${item.bilJemaah || 0}</b></div>`
         + (item.catatan ? `<div class="mt-1 text-secondary"><i class="fas fa-comment-dots me-1"></i> ${item.catatan}</div>` : '')
         : `<div class="mt-1 text-danger"><i class="fas fa-exclamation-triangle me-1"></i> Sebab: ${item.sebab || '-'}</div>`;
-
       html += `
         <div class="card record-card ${cardColorClass}">
           <div class="card-body">
@@ -847,7 +771,6 @@
     });
     container.innerHTML = html;
   }
-
   window.tapisSenarai = function() {
     let keyword = document.getElementById('searchInput').value.toLowerCase();
     let filtered = allCachedRecords.filter(item => {
@@ -861,41 +784,32 @@
     });
     renderSenarai(filtered);
   };
-
   window.editRekod = async function(id, colName) {
     let target = allCachedRecords.find(r => r.id === id && r.collectionName === colName);
     if (!target) return;
-
     document.getElementById('editDocId').value = target.id;
     document.getElementById('editCollectionName').value = target.collectionName;
     document.getElementById('tarikh').value = target.tarikh || '';
-
     let masjidRadios = document.querySelectorAll('input[name="masjid"]');
     masjidRadios.forEach(r => {
       r.checked = (r.value === target.masjid);
     });
-
     let statusRadios = document.querySelectorAll('input[name="status"]');
     statusRadios.forEach(r => {
       r.checked = (r.value === target.status);
     });
-
     tunjukkanBahagian();
-
     if (target.status === 'Kuliah') {
       document.getElementById('bilJemaah').value = target.bilJemaah || '';
       document.getElementById('catatan').value = target.catatan || '';
     } else {
       document.getElementById('sebab').value = target.sebab || '';
     }
-
     document.getElementById('borangHeaderTitle').innerText = 'Kemaskini Rekod Takmir';
     document.getElementById('submitBtn').innerHTML = '<i class="fas fa-save me-1"></i> KEMASKINI REKOD';
     document.getElementById('batalEditBtn').style.display = 'block';
-
     switchTab('borang');
   };
-
   window.padamRekod = async function(id, colName) {
     Swal.fire({
       title: 'Padam Rekod Ini?',
@@ -918,7 +832,6 @@
       }
     });
   };
-
   window.padamMengikutTarikhCustom = async function(elementId) {
     let t = document.getElementById(elementId).value;
     if (!t) {
@@ -927,7 +840,6 @@
     }
     jalankanPadamTarikh(t);
   };
-
   async function jalankanPadamTarikh(tarikhStr) {
     Swal.fire({
       title: `Padam Tarikh ${tarikhStr.split('-').reverse().join('/')}?`,
@@ -957,7 +869,6 @@
       }
     });
   }
-
   window.padamSemuaRekod = async function() {
     Swal.fire({
       title: 'AMARAN: Padam SEMUA Rekod?',
@@ -982,7 +893,6 @@
       }
     });
   };
-
   window.cetakPdfTidakKuliah = async function() {
     await muatMaklumatGuru();
     const records = allCachedRecords.filter(r => r.status === 'Tidak Kuliah');
@@ -994,14 +904,11 @@
     const printWindow = window.open('', '_blank');
     if (!printWindow) { Swal.fire('Ralat', 'Tetingkap cetak disekat. Sila benarkan pop-up.', 'error'); return; }
     
-    // Direct Online URLs for Logos so they render reliably on print
     const logoKelantan = 'https://www.pngfind.com/pngs/m/309-3095833_logo-rasmi-maik-majlis-agama-islam-kelantan-hd.png';
     const logoJakim = 'https://seeklogo.com/images/J/jakim-logo-03F7029257-seeklogo.com.png';
-
     printWindow.document.write(`<!DOCTYPE html><html lang="ms"><head><meta charset="UTF-8"><title>Borang Tunjuk Sebab Tidak Hadir</title><style>@page{size:A4 portrait;margin:0}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#000;margin:0;padding:8mm;font-size:11px;width:210mm;min-height:297mm}.form{width:100%;min-height:281mm}.header{display:grid;grid-template-columns:80px 1fr 80px;align-items:center;min-height:100px;padding:4px 8px}.header img{display:block;margin:auto;max-width:72px;max-height:86px;object-fit:contain}.header-title{text-align:center;font-weight:700;font-size:12px;line-height:1.5}.bar{background:#d9d9d9;border-top:1px solid #000;border-bottom:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;text-align:center;font-weight:700;padding:3px;text-transform:uppercase}.info{display:grid;grid-template-columns:1fr 1fr}.info div{border-bottom:1px solid #777;padding:3px 5px}.info div:nth-child(2),.info div:nth-child(4){border-right:1px solid #777}.info .wide{grid-column:1/-1}.records{width:100%;border-collapse:collapse;table-layout:fixed}.records th,.records td{border:1px solid #777;padding:3px 4px;height:25px;vertical-align:top}.records th{text-align:center;font-weight:700}.records th:nth-child(1){width:5%}.records th:nth-child(2){width:21%}.records th:nth-child(3){width:30%}.records th:nth-child(4){width:44%}.center{text-align:center}.note{padding:7px 5px;line-height:1.5}.statement{padding:6px 5px;min-height:98px;line-height:1.5}.sign-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:28px}.sign-grid div{padding:0 3px}.sign-line{display:inline-block;border-bottom:1px dotted #000;width:145px;height:14px}.office{min-height:36px;padding:5px}.warning{padding:6px 5px;line-height:1.55}.warning-row{display:grid;grid-template-columns:30px 1fr}.muted{font-size:9px}.info,.records,.note,.statement,.office,.warning{border-left:1px solid #000;border-right:1px solid #000}.warning{border-bottom:1px solid #000;min-height:174px}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style></head><body><div class="form"><div class="header"><img src="${logoKelantan}" alt="Logo MAIK"><div class="header-title">BORANG TUNJUK SEBAB<br>TIDAK HADIR MENGAJAR KELAS PENGAJIAN TAKMIR</div><img src="${logoJakim}" alt="Logo JAKIM"></div><div class="bar">MAKLUMAT GURU TAKMIR</div><div class="info"><div class="wide center">NAMA : ${escapeHtml(maklumatGuru.nama)}</div><div>NO. K/P : ${escapeHtml(maklumatGuru.noKp)}</div><div>NO. HP : ${escapeHtml(maklumatGuru.noHp)}</div><div>JAJAHAN : ${escapeHtml(maklumatGuru.jajahan)}</div><div>PEKERJAAN : ${escapeHtml(maklumatGuru.pekerjaan)}</div></div><div class="bar">MAKLUMAT TEMPAT MENGAJAR</div><table class="records"><thead><tr><th>BIL</th><th>HARI / TARIKH</th><th>MASJID / SURAU</th><th>SEBAB TIDAK HADIR</th></tr></thead><tbody>${rows}</tbody></table><div class="note">* Guru Takmir dikehendaki memaklumkan ketidakhadiran ke kelas pengajian takmir<br>Kepada PPMJ dan perlu akur kepada kekerapan kelas sebanyak [4] kali sebulan<br>Bagi satu – satu masjid atau surau yang berkenaan (Perkara 9.3 (vii) dan 11.1<br>Panduan Program Takmir Masjid Dan Surau Seluruh Malaysia 2012)</div><div class="bar">PENGAKUAN GURU TAKMIR</div><div class="statement">“Saya mengaku bahawa alasan – alasan yang diberikan meupakan benar belaka”<div class="sign-grid"><div>Tarikh : <span class="sign-line"></span></div><div class="center"><span class="sign-line"></span><br>Tandatangan Guru Takmir</div></div></div><div class="bar">UNTUK KEGUNAAN PEJABAT</div><div class="office"></div><div class="bar">PENGESAHAN OLEH PENYELARAS PENTADBIRAN MASJID JAJAHAN (PPMJ)</div><div class="statement">“ Saya mengesahkan bahawa borang tunjuk sebab ketidakhadiran mengajar kelas takmir ini telah diserahkan di hadapan saya ”<div class="sign-grid"><div>Tarikh : <span class="sign-line"></span></div><div class="center"><span class="sign-line"></span><br>Tandatangan dan Cop Jawatan</div></div></div><div class="bar">PERINGATAN / MAKLUMAN</div><div class="warning"><div class="warning-row"><span>(i)</span><span>Diisi dalam satu salinan sahaja.</span></div><div class="warning-row"><span>(ii)</span><span>Sila serahkan borang ini bersama dengan borang tuntutan elaun mengajar setiap bulan<br><span class="muted">(jika berkenaan sahaja)</span></span></div></div></div><script>window.onload=()=>{document.title='';try{history.replaceState(null,'','/')}catch(e){}Promise.all(Array.from(document.querySelectorAll('img')).map(img => img.decode ? img.decode().catch(() => {}) : img.complete ? Promise.resolve() : new Promise(resolve => { img.addEventListener('load', resolve, { once: true }); img.addEventListener('error', resolve, { once: true }); }))).then(() => window.print())};<\/script></body></html>`);
     printWindow.document.close();
   };
 </script>
 </body>
 </html>
-
